@@ -31,8 +31,9 @@ app.get('/', (req, res) => {
 
   // Calcular métricas gerais de progresso
   const totalSemanas = 12;
-  const concluidas = semanaNumero > 1 ? semanaNumero - 1 : 0;
-  const porcentagemGeral = Math.round((concluidas / totalSemanas) * 100);
+  const isInicioCurso = (semanaNumero === 1);
+  const concluidas = isInicioCurso ? 0 : (semanaNumero - 1);
+  const porcentagemGeral = isInicioCurso ? 0 : Math.round((concluidas / totalSemanas) * 100);
 
   res.render('index', {
     curso: dadosCurso,
@@ -40,10 +41,14 @@ app.get('/', (req, res) => {
     semanaNumeroAtual: semanaNumero,
     modulos: modulosCompletos,
     dicasFamilia,
+    isInicioCurso,
     progresso: {
       totalSemanas,
       concluidas,
-      porcentagemGeral
+      porcentagemGeral,
+      statusTexto: isInicioCurso 
+        ? "Preparação para o Primeiro Encontro! 0 de 12 aulas concluídas" 
+        : `${concluidas} de ${totalSemanas} aulas concluídas (${porcentagemGeral}%)`
     }
   });
 });

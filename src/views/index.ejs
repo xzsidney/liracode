@@ -35,16 +35,29 @@
   <!-- Hero de Boas-Vindas -->
   <section class="hero">
     <div class="container">
-      <div class="badge-family">
-        <span>👨‍👩‍👧‍👦 Acompanhamento Pedagógico Semanal</span>
-      </div>
-      <h1 class="hero-title">
-        Acompanhe a jornada do seu filho em <br>
-        <span class="highlight"><%= curso.titulo %></span>
-      </h1>
-      <p class="hero-subtitle">
-        Transparência completa sobre o que os jovens estão aprendendo, os projetos práticos desenvolvidos no terminal e dicas para fortalecer o raciocínio lógico em casa.
-      </p>
+      <% if (isInicioCurso) { %>
+        <div class="badge-family" style="border-color: var(--gold-bright); color: var(--gold-bright); background: rgba(212, 175, 55, 0.18);">
+          <span>🚀 Turma Inaugural • Primeira Aula Prestes a Começar!</span>
+        </div>
+        <h1 class="hero-title">
+          Bem-vindos ao início da jornada em <br>
+          <span class="highlight"><%= curso.titulo %></span>
+        </h1>
+        <p class="hero-subtitle">
+          Estamos prestes a dar o pontapé inicial! Aqui os pais acompanham passo a passo o que os jovens vão aprender, os primeiros códigos no terminal e como incentivá-los em casa.
+        </p>
+      <% } else { %>
+        <div class="badge-family">
+          <span>👨‍👩‍👧‍👦 Acompanhamento Pedagógico Semanal</span>
+        </div>
+        <h1 class="hero-title">
+          Acompanhe a jornada do seu filho em <br>
+          <span class="highlight"><%= curso.titulo %></span>
+        </h1>
+        <p class="hero-subtitle">
+          Transparência completa sobre o que os jovens estão aprendendo, os projetos práticos desenvolvidos no terminal e dicas para fortalecer o raciocínio lógico em casa.
+        </p>
+      <% } %>
 
       <div class="hero-meta">
         <div class="meta-item">
@@ -72,17 +85,24 @@
           <h2 class="featured-title">Semana <%= String(semanaAtual.numero).padStart(2, '0') %>: <%= semanaAtual.titulo %></h2>
         </div>
         <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
-          <% if (semanaAtual.numero === semanaNumeroAtual) { %>
+          <% if (semanaAtual.numero === 1 && isInicioCurso) { %>
+            <div class="featured-status-pill">
+              <span class="pulse-dot"></span>
+              <span>⭐ Aula Inaugural • Grande Estreia</span>
+            </div>
+            <span class="featured-week-tag">Primeiro Encontro (90 min)</span>
+          <% } else if (semanaAtual.numero === semanaNumeroAtual) { %>
             <div class="featured-status-pill">
               <span class="pulse-dot"></span>
               <span>Aula em Destaque</span>
             </div>
+            <span class="featured-week-tag">Encontro 90 minutos</span>
           <% } else { %>
             <div class="featured-status-pill" style="background:var(--azul-accent);">
               <span>Visualizando Semana <%= semanaAtual.numero %></span>
             </div>
+            <span class="featured-week-tag">Encontro 90 minutos</span>
           <% } %>
-          <span class="featured-week-tag">Encontro 90 minutos</span>
         </div>
       </div>
 
@@ -125,7 +145,7 @@
       <div class="parent-dialogue-box">
         <div class="dialogue-icon">💡</div>
         <div class="dialogue-content">
-          <h4>Dica para puxar conversa em casa:</h4>
+          <h4>Dica para os pais no primeiro encontro:</h4>
           <p><%= semanaAtual.dicaParaPais %></p>
         </div>
       </div>
@@ -137,15 +157,28 @@
     <div class="progress-section">
       <div class="progress-header">
         <div class="progress-title">
-          <span>Progresso da Turma: <strong>Semana <%= semanaNumeroAtual %> de <%= progresso.totalSemanas %></strong></span>
+          <% if (isInicioCurso) { %>
+            <span>Status da Turma: <strong>Marco Inicial • Preparação para a Semana 01</strong></span>
+          <% } else { %>
+            <span>Progresso da Turma: <strong>Semana <%= semanaNumeroAtual %> de <%= progresso.totalSemanas %></strong></span>
+          <% } %>
         </div>
         <div class="progress-pct">
-          <%= progresso.porcentagemGeral %>% da Trilha Concluída
+          <% if (isInicioCurso) { %>
+            0 de <%= progresso.totalSemanas %> Aulas Concluídas • Aventura Começando!
+          <% } else { %>
+            <%= progresso.porcentagemGeral %>% da Trilha Concluída (<%= progresso.concluidas %>/<%= progresso.totalSemanas %>)
+          <% } %>
         </div>
       </div>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width: <%= Math.max(progresso.porcentagemGeral, 8) %>%;"></div>
+        <div class="progress-bar-fill" style="width: <%= isInicioCurso ? 5 : Math.max(progresso.porcentagemGeral, 8) %>%;"></div>
       </div>
+      <% if (isInicioCurso) { %>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
+          🌱 <strong>Contagem Regressiva:</strong> Todos os 4 módulos e 12 semanas estão mapeados abaixo. A cada aula concluída, a barra e as insígnias serão atualizadas para você acompanhar a evolução do seu filho!
+        </p>
+      <% } %>
     </div>
   </section>
 
@@ -163,7 +196,7 @@
             <% if (mod.status === 'concluido') { %>
               ✓ Concluído
             <% } else if (mod.status === 'em-andamento') { %>
-              ⏳ Em Andamento
+              <%= isInicioCurso && mod.id === 1 ? '🌱 Módulo de Abertura' : '⏳ Em Andamento' %>
             <% } else { %>
               🔒 Próximas Aulas
             <% } %>
@@ -183,7 +216,13 @@
                   <span>Semana <%= sem.numero %>: <%= sem.titulo.split('(')[0] %></span>
                 </a>
                 <span class="week-indicator <%= sem.status === 'concluida' ? 'done' : (sem.status === 'em-andamento' ? 'current' : 'upcoming') %>">
-                  <% if (sem.status === 'concluida') { %>✓<% } else if (sem.status === 'em-andamento') { %>Ativa<% } else { %>•<% } %>
+                  <% if (sem.status === 'concluida') { %>
+                    ✓
+                  <% } else if (sem.status === 'em-andamento') { %>
+                    <%= isInicioCurso && sem.numero === 1 ? 'Estreia' : 'Ativa' %>
+                  <% } else { %>
+                    •
+                  <% } %>
                 </span>
               </li>
             <% }); %>

@@ -4,7 +4,7 @@
  */
 
 // Configure aqui a semana atual do curso (1 a 12)
-const SEMANA_ATUAL = 3;
+const SEMANA_ATUAL = 1;
 
 const dadosCurso = {
   nome: "LiraCode",
@@ -13,6 +13,7 @@ const dadosCurso = {
   faixaEtaria: "Jovens de 14 a 17 anos",
   formato: "1 encontro semanal de 90 minutos",
   duracaoTotal: "12 semanas (3 meses)",
+  statusTurma: "Turma Inaugural • Primeira Aula Prestes a Começar!",
   ferramentas: ["Node.js", "Visual Studio Code", "readline-sync", "Terminal"],
   contatoSuporte: {
     whatsapp: "(11) 99999-8888",
@@ -33,17 +34,18 @@ const modulos = [
       {
         numero: 1,
         titulo: "O que é Programar e como o Computador Pensa?",
-        resumo: "Compreensão de algoritmos (receitas lógicas) e execução do primeiro script JavaScript no terminal.",
+        resumo: "A aula inaugural! Os alunos vão entender o que são algoritmos (receitas lógicas) e rodar seu primeiríssimo arquivo JavaScript no Node.js através do terminal.",
         objetivos: [
-          "Entender o conceito de algoritmo e sequência lógica.",
-          "Conhecer o terminal e rodar comandos com Node.js.",
-          "Exibir dados e mensagens na tela com console.log()."
+          "Desmistificar a programação: entender algoritmos como sequências lógicas precisas.",
+          "Conhecer o terminal e executar o comando `node script.js` pela primeira vez.",
+          "Exibir textos e mensagens na tela usando `console.log()`.",
+          "Dinâmica Desplugada: instruir um colega literalmente para perceber como computadores precisam de precisão absoluta."
         ],
         projeto: {
-          nome: "Script de Apresentação Pessoal",
-          descricao: "Criação de um programa interativo que apresenta o perfil do jovem, seus interesses e metas no curso."
+          nome: "Script de Apresentação Pessoal & Desafio Desplugado",
+          descricao: "Criação do seu primeiro script Node.js se apresentando (nome, interesses e objetivos) + dinâmica prática em sala."
         },
-        dicaParaPais: "Pergunte ao seu filho como ele explicaria uma 'receita de bolo' para um robô que não sabe improvisar!"
+        dicaParaPais: "Neste início, o entusiasmo faz toda a diferença! Ao final da aula, pergunte: 'Filho, qual foi a sensação de rodar o seu primeiro comando no terminal?' e comemore essa conquista."
       },
       {
         numero: 2,
