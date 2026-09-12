@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= curso.nome %> • Portal dos Pais (<%= curso.titulo %>)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <header class="topbar">
+    <div class="container topbar-content">
+      <a href="/" class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <span class="brand-title"><%= curso.nome %><span>.portal</span></span>
+          <span class="brand-tag">Espaço da Família</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="#modulo-trilha" class="meta-item" style="text-decoration:none;">
+          <span>🗓️ Cronograma 12 Semanas</span>
+        </a>
+        <a href="https://wa.me/5511999998888" target="_blank" class="btn-contact">
+          <span>💬 Canal com a Coordenação</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero de Boas-Vindas -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge-family">
+        <span>👨‍👩‍👧‍👦 Acompanhamento Pedagógico Semanal</span>
+      </div>
+      <h1 class="hero-title">
+        Acompanhe a jornada do seu filho em <br>
+        <span class="highlight"><%= curso.titulo %></span>
+      </h1>
+      <p class="hero-subtitle">
+        Transparência completa sobre o que os jovens estão aprendendo, os projetos práticos desenvolvidos no terminal e dicas para fortalecer o raciocínio lógico em casa.
+      </p>
+
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span>🎯 <strong>Público:</strong> <%= curso.faixaEtaria %></span>
+        </div>
+        <div class="meta-item">
+          <span>⏱️ <strong>Formato:</strong> <%= curso.formato %></span>
+        </div>
+        <div class="meta-item">
+          <span>🗓️ <strong>Duração:</strong> <%= curso.duracaoTotal %></span>
+        </div>
+        <div class="meta-item">
+          <span>💻 <strong>Ambiente:</strong> Node.js & Terminal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card em Destaque: Aula da Semana -->
+  <main class="container featured-section">
+    <div class="featured-card">
+      <div class="featured-header">
+        <div>
+          <span class="featured-modulo-badge"><%= semanaAtual.moduloNome %>: <%= semanaAtual.moduloTitulo %></span>
+          <h2 class="featured-title">Semana <%= String(semanaAtual.numero).padStart(2, '0') %>: <%= semanaAtual.titulo %></h2>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+          <% if (semanaAtual.numero === semanaNumeroAtual) { %>
+            <div class="featured-status-pill">
+              <span class="pulse-dot"></span>
+              <span>Aula em Destaque</span>
+            </div>
+          <% } else { %>
+            <div class="featured-status-pill" style="background:var(--azul-accent);">
+              <span>Visualizando Semana <%= semanaAtual.numero %></span>
+            </div>
+          <% } %>
+          <span class="featured-week-tag">Encontro 90 minutos</span>
+        </div>
+      </div>
+
+      <p class="featured-summary">
+        <%= semanaAtual.resumo %>
+      </p>
+
+      <div class="featured-grid">
+        <!-- O que será aprendido -->
+        <div class="box-objectives">
+          <div class="box-title">
+            <span>🎯</span>
+            <h3>O que ele(a) vai aprender nesta aula:</h3>
+          </div>
+          <ul class="objectives-list">
+            <% semanaAtual.objetivos.forEach(function(obj) { %>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><%= obj %></span>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <!-- Projeto Prático Construído -->
+        <div class="box-project">
+          <div class="box-title">
+            <span>🛠️</span>
+            <h3>Projeto Prático da Semana:</h3>
+          </div>
+          <div class="project-name"><%= semanaAtual.projeto.nome %></div>
+          <p class="project-desc"><%= semanaAtual.projeto.descricao %></p>
+          <div class="project-badge-tag">
+            <span>💻 Código 100% autoral em Node.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caixa de Apoio da Família -->
+      <div class="parent-dialogue-box">
+        <div class="dialogue-icon">💡</div>
+        <div class="dialogue-content">
+          <h4>Dica para puxar conversa em casa:</h4>
+          <p><%= semanaAtual.dicaParaPais %></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Barra Geral de Progresso -->
+  <section class="container">
+    <div class="progress-section">
+      <div class="progress-header">
+        <div class="progress-title">
+          <span>Progresso da Turma: <strong>Semana <%= semanaNumeroAtual %> de <%= progresso.totalSemanas %></strong></span>
+        </div>
+        <div class="progress-pct">
+          <%= progresso.porcentagemGeral %>% da Trilha Concluída
+        </div>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" style="width: <%= Math.max(progresso.porcentagemGeral, 8) %>%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trilha dos 4 Módulos -->
+  <section class="container modules-section" id="modulo-trilha">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Trilha Pedagógica Completa</h2>
+      <p class="section-subtitle">Conheça o caminho evolutivo dos 4 módulos ao longo das 12 semanas de aula</p>
+    </div>
+
+    <div class="modules-grid">
+      <% modulos.forEach(function(mod) { %>
+        <div class="module-card <%= mod.status %>">
+          <div class="module-badge-status status-<%= mod.status %>">
+            <% if (mod.status === 'concluido') { %>
+              ✓ Concluído
+            <% } else if (mod.status === 'em-andamento') { %>
+              ⏳ Em Andamento
+            <% } else { %>
+              🔒 Próximas Aulas
+            <% } %>
+          </div>
+
+          <div class="module-top">
+            <span class="module-icon"><%= mod.icone %></span>
+            <h3 class="module-name"><%= mod.nome %></h3>
+          </div>
+          <div class="module-period"><%= mod.titulo %> • <%= mod.periodo %></div>
+          <p class="module-desc"><%= mod.descricao %></p>
+
+          <ul class="module-weeks-list">
+            <% mod.semanas.forEach(function(sem) { %>
+              <li class="week-item <%= sem.numero === semanaNumeroAtual ? 'is-current' : '' %>">
+                <a href="/?semana=<%= sem.numero %>" class="week-title-link" title="Clique para ver os detalhes da Semana <%= sem.numero %>">
+                  <span>Semana <%= sem.numero %>: <%= sem.titulo.split('(')[0] %></span>
+                </a>
+                <span class="week-indicator <%= sem.status === 'concluida' ? 'done' : (sem.status === 'em-andamento' ? 'current' : 'upcoming') %>">
+                  <% if (sem.status === 'concluida') { %>✓<% } else if (sem.status === 'em-andamento') { %>Ativa<% } else { %>•<% } %>
+                </span>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <!-- Espaço da Família & Dicas Pedagógicas -->
+  <section class="family-space-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Como Apoiar seu Filho(a) na Programação</h2>
+        <p class="section-subtitle">Orientações pedagógicas preparadas pelos nossos instrutores para os pais</p>
+      </div>
+
+      <div class="family-tips-grid">
+        <% dicasFamilia.forEach(function(dica) { %>
+          <div class="tip-card">
+            <div class="tip-icon"><%= dica.icone %></div>
+            <h3 class="tip-title"><%= dica.titulo %></h3>
+            <p class="tip-desc"><%= dica.descricao %></p>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text">
+              <span class="brand-title"><%= curso.nome %></span>
+              <span class="brand-tag">Formação em Tecnologia para Jovens</span>
+            </div>
+          </div>
+          <p>
+            Desenvolvendo pensamento crítico, resolução de problemas e autonomia digital para o futuro através do código.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Ferramentas do Curso</h4>
+          <ul class="footer-links">
+            <% curso.ferramentas.forEach(function(ferramenta) { %>
+              <li>• <%= ferramenta %></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atendimento aos Pais</h4>
+          <ul class="footer-links">
+            <li>📱 WhatsApp: <%= curso.contatoSuporte.whatsapp %></li>
+            <li>✉️ E-mail: <%= curso.contatoSuporte.email %></li>
+            <li>⏰ <%= curso.contatoSuporte.horarioAtendimento %></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 <%= curso.nome %>. Todos os direitos reservados. Portal de Transparência Pedagógica da Família.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

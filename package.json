@@ -1,0 +1,23 @@
+{
+  "name": "liracode",
+  "version": "1.0.0",
+  "description": "Portal dos Pais - LiraCode: Lógica de Programação com Node.js",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "liracode",
+    "nodejs",
+    "educacao",
+    "logica-de-programacao",
+    "portal-dos-pais"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
