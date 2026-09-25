@@ -13,8 +13,8 @@ const dadosCurso = {
   faixaEtaria: "Jovens de 10 a 16 anos",
   formato: "Aulas práticas aos sábados (90 minutos)",
   duracaoTotal: "12 semanas de imersão prática",
-  statusTurma: "Turma Ativa • Aula 02 de Cibersegurança",
-  mentor: "Veterano da era do processador 486 treinando novos talentos",
+  statusTurma: "Turma Oficial Ativa • 6 Estudantes Conectados",
+  mentor: "Sidney (veterano da era do processador 486)",
   ferramentas: ["Windows Explorer Avançado", "Node.js", "Visual Studio Code", "Git & GitHub", "Terminal"],
   contatoSuporte: {
     whatsapp: "(11) 99999-8888",
@@ -22,6 +22,24 @@ const dadosCurso = {
     horarioAtendimento: "Segunda a Sábado, das 09h às 18h"
   }
 };
+
+// Turma Oficial de 6 Estudantes
+const estudantesOficiais = [
+  { nome: "Ana Luiza", responsavel: "Isabela", parentesco: "Mãe", badge: "Turma LiraCode" },
+  { nome: "Isabely", responsavel: "Alessandra", parentesco: "Mãe", badge: "Turma LiraCode" },
+  { nome: "Enzo", responsavel: "Alessandra", parentesco: "Mãe", badge: "Turma LiraCode" },
+  { nome: "Samuel", responsavel: "Yara", parentesco: "Mãe", badge: "Turma LiraCode" },
+  { nome: "Paulo", responsavel: "Elaine e Sidney", parentesco: "Pais", badge: "Turma LiraCode" },
+  { nome: "Jennifer", responsavel: "Elaine e Sidney", parentesco: "Pais", badge: "Turma LiraCode" }
+];
+
+// Rede de Famílias Conectadas
+const familiasConectadas = [
+  { responsavel: "Isabela", aluno: "Ana Luiza", parentesco: "Mãe da Ana Luiza", icone: "fa-solid fa-heart" },
+  { responsavel: "Alessandra", aluno: "Isabely e Enzo", parentesco: "Mãe da Isabely e do Enzo", icone: "fa-solid fa-heart" },
+  { responsavel: "Yara", aluno: "Samuel", parentesco: "Mãe do Samuel", icone: "fa-solid fa-heart" },
+  { responsavel: "Elaine & Sidney", aluno: "Jennifer e Paulo", parentesco: "Pais da Jennifer e do Paulo", icone: "fa-solid fa-heart" }
+];
 
 const galeriaMomentos = [
   {
@@ -39,7 +57,7 @@ const galeriaMomentos = [
     id: 2,
     titulo: "A Gaveta Digital dos Arquivos",
     subtitulo: "Semana 01 • Organização & CRUD",
-    descricao: "Criação de pastas estruturadas no Windows e o primeiro arquivo .txt com a Ficha Pessoal de cada aluno.",
+    descricao: "Criação de pastas estruturadas no Windows e o primeiro arquivo .txt com a Ficha Pessoal de cada um dos 6 alunos.",
     categoria: "Fundamentos",
     icone: "fa-solid fa-folder-tree",
     gradiente: "from-brand-blue to-blue-950",
@@ -59,14 +77,14 @@ const galeriaMomentos = [
   },
   {
     id: 4,
-    titulo: "Espírito de Equipe & Colaboração",
-    subtitulo: "Camaradas de Código",
-    descricao: "Jovens talentos aprendendo juntos a pensar criticamente, resolver problemas e controlar a tecnologia com autonomia.",
+    titulo: "A Turma Reunida no Laboratório",
+    subtitulo: "Encontro aos Sábados",
+    descricao: "Ana Luiza, Isabely, Enzo, Samuel, Paulo e Jennifer aprendendo juntos a controlar o computador com raciocínio e segurança.",
     categoria: "Companheirismo",
     icone: "fa-solid fa-users",
     gradiente: "from-brand-darkred to-slate-900",
     corBorda: "border-brand-gold/40",
-    detalhe: "Turma de Jovens"
+    detalhe: "6 Estudantes Oficiais"
   }
 ];
 
@@ -387,6 +405,8 @@ function obterSemanaAtual(semanaNumero) {
 module.exports = {
   SEMANA_ATUAL,
   dadosCurso,
+  estudantesOficiais,
+  familiasConectadas,
   galeriaMomentos,
   perguntasAlmoco,
   modulos,

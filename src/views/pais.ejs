@@ -137,10 +137,42 @@
     </div>
   </section>
 
-  <!-- SEÇÃO 3: POR QUE ESSA INICIATIVA COMEÇOU? (CARTA ABERTA AOS PAIS) -->
+  <!-- SEÇÃO 3: REDE DE FAMÍLIAS CONECTADAS & CARTA DO MENTOR -->
   <section class="py-16 bg-slate-900 border-b border-brand-gold/20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
+      <!-- Cards das Famílias Conectadas -->
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-8 space-y-2">
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand-gold bg-brand-gold/10 px-3.5 py-1.5 rounded-full border border-brand-gold/30 inline-block font-display">
+            COMUNIDADE LIRACODE
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold font-display text-white">
+            Nossa Rede de Famílias Conectadas
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300">
+            A união entre mentoria e pais é o maior alicerce para o crescimento seguro dos nossos jovens:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <% familias.forEach(function(fam) { %>
+            <div class="bg-slate-950 p-5 rounded-2xl border-2 border-brand-gold/30 hover:border-brand-gold transition shadow-lg space-y-2 text-center">
+              <div class="w-10 h-10 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center text-lg mx-auto shadow">
+                <i class="<%= fam.icone %>"></i>
+              </div>
+              <h4 class="font-display font-bold text-white text-base">
+                <%= fam.responsavel %>
+              </h4>
+              <p class="text-xs text-amber-300 font-semibold">
+                <%= fam.parentesco %>
+              </p>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- Carta Aberta do Mentor Sidney -->
       <div class="bg-gradient-to-br from-brand-blue/30 via-slate-950 to-brand-red/30 rounded-3xl p-8 sm:p-12 border-2 border-brand-gold/40 shadow-2xl space-y-8">
         
         <div class="flex items-center gap-4">
@@ -148,9 +180,9 @@
             <i class="fa-solid fa-heart-pulse"></i>
           </div>
           <div>
-            <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">Transparência & Origem</span>
+            <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">Origem & Propósito</span>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">
-              Uma Palavra Especial de Pai para Pais
+              Uma Palavra Especial de Sidney para as Famílias
             </h2>
           </div>
         </div>
@@ -168,7 +200,7 @@
               Hoje, os jovens nascem arrastando o dedo em telas touchscreen de celular — eles sabem consumir vídeos e jogos, mas raramente entendem o que acontece por trás do vidro.
             </p>
             <p>
-              Reunir meus filhos e seus amigos aos sábados é uma forma de compartilhar essa bagagem, criando uma base lógica sólida que servirá para qualquer profissão futura: medicina, direito, engenharia, finanças ou tecnologia.
+              Reunir Ana Luiza, Isabely, Enzo, Samuel, Jennifer e Paulo aos sábados é uma honra e uma forma de compartilhar essa bagagem, criando uma base lógica sólida que servirá para qualquer profissão futura: medicina, direito, engenharia, finanças ou tecnologia.
             </p>
           </div>
 

@@ -46,19 +46,19 @@
             </div>
           </div>
 
-          <!-- Pilares da Turma de Alunos -->
-          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-slate-300">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-brand-gold/40 text-amber-300 font-semibold shadow-sm">
-              <i class="fa-solid fa-graduation-cap text-brand-gold"></i>
-              <span>Portfólio Individual para Cada Aluno</span>
-            </div>
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-blue-500/40 text-sky-300 font-semibold shadow-sm">
-              <i class="fa-solid fa-code text-sky-400"></i>
-              <span>Projetos Práticos & Autorais</span>
-            </div>
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-emerald-500/40 text-emerald-300 font-semibold shadow-sm">
-              <i class="fa-solid fa-shield-check text-emerald-400"></i>
-              <span>Segurança Ativa na Internet</span>
+          <!-- Turma Oficial: 6 Jovens Talentos Convocados -->
+          <div class="pt-4 border-t border-slate-800/80">
+            <p class="text-xs uppercase tracking-widest text-amber-300 font-bold mb-3 flex items-center justify-center lg:justify-start gap-1.5 font-display">
+              <i class="fa-solid fa-users text-brand-gold"></i>
+              <span>Turma Oficial de Estudantes (6 Talentos):</span>
+            </p>
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <% estudantes.forEach(function(estudante) { %>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-brand-gold/50 text-white font-display font-bold text-xs shadow hover:border-brand-gold hover:scale-105 transition-all">
+                  <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                  <span><%= estudante.nome %></span>
+                </div>
+              <% }); %>
             </div>
           </div>
 
@@ -203,7 +203,7 @@
             </div>
 
             <p class="text-sm text-slate-300 leading-relaxed">
-              Explicado em linguagem humana, sem termos difíceis. Veja o valor pedagógico do que seu filho está aprendendo e confira <strong>perguntas práticas para conversar no almoço de domingo</strong>.
+              Explicado em linguagem humana e acolhedora para as famílias (<strong>Isabela, Alessandra, Yara, Elaine e Sidney</strong>). Veja o valor pedagógico do que seu filho está aprendendo e confira <strong>perguntas práticas para o almoço de domingo</strong>.
             </p>
 
             <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-4">

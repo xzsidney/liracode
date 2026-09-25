@@ -3,6 +3,8 @@ const path = require('path');
 const {
   SEMANA_ATUAL,
   dadosCurso,
+  estudantesOficiais,
+  familiasConectadas,
   galeriaMomentos,
   perguntasAlmoco,
   modulos,
@@ -42,6 +44,8 @@ app.get('/', (req, res) => {
     curso: dadosCurso,
     semanaAtual: semanaEmDestaque,
     semanaNumeroAtual: SEMANA_ATUAL,
+    estudantes: estudantesOficiais,
+    familias: familiasConectadas,
     momentos: galeriaMomentos
   });
 });
@@ -77,6 +81,8 @@ app.get('/pais', (req, res) => {
     curso: dadosCurso,
     semanaAtual: semanaEmDestaque,
     semanaNumeroAtual: SEMANA_ATUAL,
+    estudantes: estudantesOficiais,
+    familias: familiasConectadas,
     dicasFamilia,
     perguntasAlmoco,
     progresso
