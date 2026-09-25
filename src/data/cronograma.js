@@ -23,14 +23,6 @@ const dadosCurso = {
   }
 };
 
-const alunosTurma = [
-  { nome: "JONATHAN", numero: "#1", funcao: "Capitão do Manto", cor: "red" },
-  { nome: "MATHEUS", numero: "#99", funcao: "Artilheiro do Código", cor: "red" },
-  { nome: "HENRIQUE", numero: "#19", funcao: "Mestre da Lógica", cor: "red" },
-  { nome: "JENNY", numero: "#12", funcao: "Muralha Defensiva", cor: "red" },
-  { nome: "+ TIME", numero: "#10", funcao: "Camisa 10 da Tecnologia", cor: "blue" }
-];
-
 const galeriaMomentos = [
   {
     id: 1,
@@ -67,14 +59,14 @@ const galeriaMomentos = [
   },
   {
     id: 4,
-    titulo: "O Manto Oficial da Turma",
+    titulo: "Espírito de Equipe & Colaboração",
     subtitulo: "Camaradas de Código",
-    descricao: "Jonathan #1, Matheus #99, Henrique #19, Jenny #12 e o Time #10 unidos para aprender a controlar a tecnologia.",
+    descricao: "Jovens talentos aprendendo juntos a pensar criticamente, resolver problemas e controlar a tecnologia com autonomia.",
     categoria: "Companheirismo",
-    icone: "fa-solid fa-shirt",
+    icone: "fa-solid fa-users",
     gradiente: "from-brand-darkred to-slate-900",
     corBorda: "border-brand-gold/40",
-    detalhe: "5 Alunos Convocados"
+    detalhe: "Turma de Jovens"
   }
 ];
 
@@ -395,7 +387,6 @@ function obterSemanaAtual(semanaNumero) {
 module.exports = {
   SEMANA_ATUAL,
   dadosCurso,
-  alunosTurma,
   galeriaMomentos,
   perguntasAlmoco,
   modulos,

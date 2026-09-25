@@ -3,7 +3,6 @@ const path = require('path');
 const {
   SEMANA_ATUAL,
   dadosCurso,
-  alunosTurma,
   galeriaMomentos,
   perguntasAlmoco,
   modulos,
@@ -43,7 +42,6 @@ app.get('/', (req, res) => {
     curso: dadosCurso,
     semanaAtual: semanaEmDestaque,
     semanaNumeroAtual: SEMANA_ATUAL,
-    alunos: alunosTurma,
     momentos: galeriaMomentos
   });
 });

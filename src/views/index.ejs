@@ -46,19 +46,19 @@
             </div>
           </div>
 
-          <!-- Manto Oficial / Elenco dos Alunos Convocados -->
-          <div class="pt-4 border-t border-slate-800/80">
-            <p class="text-xs uppercase tracking-widest text-amber-300 font-bold mb-3 flex items-center justify-center lg:justify-start gap-1.5">
-              <i class="fa-solid fa-shirt text-brand-gold"></i>
-              <span>Manto Oficial da Turma (5 Talentos Convocados):</span>
-            </p>
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              <% alunos.forEach(function(aluno) { %>
-                <div class="student-badge <%= aluno.cor === 'red' ? 'student-badge-red' : 'student-badge-blue' %>" title="<%= aluno.funcao %>">
-                  <i class="fa-solid fa-shirt"></i>
-                  <span><%= aluno.nome %> <%= aluno.numero %></span>
-                </div>
-              <% }); %>
+          <!-- Pilares da Turma de Alunos -->
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-slate-300">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-brand-gold/40 text-amber-300 font-semibold shadow-sm">
+              <i class="fa-solid fa-graduation-cap text-brand-gold"></i>
+              <span>Portfólio Individual para Cada Aluno</span>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-blue-500/40 text-sky-300 font-semibold shadow-sm">
+              <i class="fa-solid fa-code text-sky-400"></i>
+              <span>Projetos Práticos & Autorais</span>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-emerald-500/40 text-emerald-300 font-semibold shadow-sm">
+              <i class="fa-solid fa-shield-check text-emerald-400"></i>
+              <span>Segurança Ativa na Internet</span>
             </div>
           </div>
 
