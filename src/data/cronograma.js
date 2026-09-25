@@ -4,78 +4,154 @@
  */
 
 // Configure aqui a semana atual do curso (1 a 12)
-const SEMANA_ATUAL = 1;
+const SEMANA_ATUAL = 2;
 
 const dadosCurso = {
   nome: "LiraCode",
-  titulo: "Lógica de Programação com Node.js",
+  titulo: "Aprenda a controlar o computador, não apenas usá-lo",
   subtitulo: "Acompanhamento Pedagógico para Pais e Responsáveis",
-  faixaEtaria: "Jovens de 14 a 17 anos",
-  formato: "1 encontro semanal de 90 minutos",
-  duracaoTotal: "12 semanas (3 meses)",
-  statusTurma: "Turma Inaugural • Primeira Aula Prestes a Começar!",
-  ferramentas: ["Node.js", "Visual Studio Code", "readline-sync", "Terminal"],
+  faixaEtaria: "Jovens de 10 a 16 anos",
+  formato: "Aulas práticas aos sábados (90 minutos)",
+  duracaoTotal: "12 semanas de imersão prática",
+  statusTurma: "Turma Ativa • Aula 02 de Cibersegurança",
+  mentor: "Veterano da era do processador 486 treinando novos talentos",
+  ferramentas: ["Windows Explorer Avançado", "Node.js", "Visual Studio Code", "Git & GitHub", "Terminal"],
   contatoSuporte: {
     whatsapp: "(11) 99999-8888",
     email: "suporte@liracode.com.br",
-    horarioAtendimento: "Segunda a Sexta, das 09h às 18h"
+    horarioAtendimento: "Segunda a Sábado, das 09h às 18h"
   }
 };
+
+const alunosTurma = [
+  { nome: "JONATHAN", numero: "#1", funcao: "Capitão do Manto", cor: "red" },
+  { nome: "MATHEUS", numero: "#99", funcao: "Artilheiro do Código", cor: "red" },
+  { nome: "HENRIQUE", numero: "#19", funcao: "Mestre da Lógica", cor: "red" },
+  { nome: "JENNY", numero: "#12", funcao: "Muralha Defensiva", cor: "red" },
+  { nome: "+ TIME", numero: "#10", funcao: "Camisa 10 da Tecnologia", cor: "blue" }
+];
+
+const galeriaMomentos = [
+  {
+    id: 1,
+    titulo: "Primeiros Comandos no Terminal",
+    subtitulo: "Semana 01 • O Início de Tudo",
+    descricao: "A sensação indescritível de digitar os primeiros comandos no terminal preto e ver o computador responder com precisão matemática.",
+    categoria: "Prática em Sala",
+    icone: "fa-solid fa-terminal",
+    gradiente: "from-brand-red to-red-950",
+    corBorda: "border-red-500/40",
+    detalhe: "Ambiente DOS / Node.js"
+  },
+  {
+    id: 2,
+    titulo: "A Gaveta Digital dos Arquivos",
+    subtitulo: "Semana 01 • Organização & CRUD",
+    descricao: "Criação de pastas estruturadas no Windows e o primeiro arquivo .txt com a Ficha Pessoal de cada aluno.",
+    categoria: "Fundamentos",
+    icone: "fa-solid fa-folder-tree",
+    gradiente: "from-brand-blue to-blue-950",
+    corBorda: "border-blue-500/40",
+    detalhe: "Sistema de Arquivos"
+  },
+  {
+    id: 3,
+    titulo: "O Crachá dos Arquivos & Cibersegurança",
+    subtitulo: "Semana 02 • Aula Atual",
+    descricao: "Desmascarando arquivos com extensões ocultas no Windows (.json, .png, .exe) e aprendendo segurança ativa na prática.",
+    categoria: "Cibersegurança",
+    icone: "fa-solid fa-shield-halved",
+    gradiente: "from-amber-600 to-amber-950",
+    corBorda: "border-brand-gold/60",
+    detalhe: "Extensões & Riscos"
+  },
+  {
+    id: 4,
+    titulo: "O Manto Oficial da Turma",
+    subtitulo: "Camaradas de Código",
+    descricao: "Jonathan #1, Matheus #99, Henrique #19, Jenny #12 e o Time #10 unidos para aprender a controlar a tecnologia.",
+    categoria: "Companheirismo",
+    icone: "fa-solid fa-shirt",
+    gradiente: "from-brand-darkred to-slate-900",
+    corBorda: "border-brand-gold/40",
+    detalhe: "5 Alunos Convocados"
+  }
+];
+
+const perguntasAlmoco = [
+  {
+    pergunta: "Filho, por que nunca devemos clicar num arquivo que termina com .exe se alguém mandar no Discord?",
+    motivo: "Estimula o aluno a explicar o perigo de executáveis e a pegadinha da extensão dupla (ex: foto.png.exe)."
+  },
+  {
+    pergunta: "Como você mudou os pontos de vida do seu herói no arquivo personagem.json?",
+    motivo: "Mostra que arquivos de configuração guardam dados estruturados que humanos e programas conseguem ler e editar."
+  },
+  {
+    pergunta: "O que o Windows esconde quando a opção 'Mostrar extensões de nomes de arquivos' está desmarcada?",
+    motivo: "Reforça o hábito de segurança que eles ativaram no Explorador de Arquivos do Windows na aula prática."
+  },
+  {
+    pergunta: "Qual é a diferença entre um arquivo de texto (.txt), uma imagem (.png) e um programa (.exe)?",
+    motivo: "Exercita o conceito do 'crachá' do arquivo e como o computador sabe qual programa deve abrir cada item."
+  }
+];
 
 const modulos = [
   {
     id: 1,
     nome: "Módulo 1",
-    titulo: "Primeiros Passos e Raciocínio Lógico",
+    titulo: "Fundamentos do Sistema Operacional & Arquivos",
     periodo: "Semanas 1 a 3",
-    descricao: "Construção da base do pensamento computacional, comandos no terminal, variáveis e interação com teclado.",
-    icone: "🌱",
+    descricao: "Entendendo a anatomia do computador: gavetas digitais, extensões de arquivos, cibersegurança e o primeiro contato com a Web.",
+    icone: "🛡️",
     semanas: [
       {
         numero: 1,
-        titulo: "O que é Programar e como o Computador Pensa?",
-        resumo: "A aula inaugural! Os alunos vão entender o que são algoritmos (receitas lógicas) e rodar seu primeiríssimo arquivo JavaScript no Node.js através do terminal.",
+        titulo: "O Computador e as Gavetas Digitais (Pastas e Arquivos .txt)",
+        resumo: "Conceito de pastas como gavetas organizadas, criação de arquivos no Bloco de Notas, ciclo CRUD manual (Criar, Ler, Atualizar, Deletar) e elaboração da Ficha Pessoal do aluno.",
         objetivos: [
-          "Desmistificar a programação: entender algoritmos como sequências lógicas precisas.",
-          "Conhecer o terminal e executar o comando `node script.js` pela primeira vez.",
-          "Exibir textos e mensagens na tela usando `console.log()`.",
-          "Dinâmica Desplugada: instruir um colega literalmente para perceber como computadores precisam de precisão absoluta."
+          "Compreender a hierarquia de pastas e diretórios no Windows.",
+          "Criar arquivos de texto puro (.txt) usando o Bloco de Notas.",
+          "Salvar, renomear, mover e deletar com segurança sem perder dados.",
+          "Criar a primeira Ficha Pessoal do aluno, semente do futuro portfólio web."
         ],
         projeto: {
-          nome: "Script de Apresentação Pessoal & Desafio Desplugado",
-          descricao: "Criação do seu primeiro script Node.js se apresentando (nome, interesses e objetivos) + dinâmica prática em sala."
+          nome: "Ficha Pessoal do Aluno (.txt)",
+          descricao: "Arquivo estruturado com nome, interesses, apelido de camisa e aspirações tecnológicas."
         },
-        dicaParaPais: "Neste início, o entusiasmo faz toda a diferença! Ao final da aula, pergunte: 'Filho, qual foi a sensação de rodar o seu primeiro comando no terminal?' e comemore essa conquista."
+        dicaParaPais: "Parabenize seu filho por ter organizado suas primeiras pastas sozinho. Pergunte: 'Filho, onde você guardou sua Ficha Pessoal no computador?'."
       },
       {
         numero: 2,
-        titulo: "A Memória do Programa (Variáveis e Tipos de Dados)",
-        resumo: "Como o computador guarda informações na memória usando caixinhas chamadas variáveis (let e const).",
+        titulo: "O Crachá dos Arquivos: Extensões (.txt, .json, .png, .exe) e Cibersegurança",
+        resumo: "Desmascarando o Explorador do Windows ao exibir extensões ocultas. Análise prática de arquivos de texto (.txt), dados estruturados (.json), imagens (.png) e o perigo real dos executáveis (.exe / .bat). Prevenção contra armadilhas e malware.",
         objetivos: [
-          "Diferenciar valores fixos (const) de mutáveis (let).",
-          "Aprender tipos básicos: Textos (Strings), Números (Numbers) e Lógicos (Booleans).",
-          "Criar frases dinâmicas com Template Strings."
+          "Ativar no Windows a exibição de extensões de arquivos ocultas.",
+          "Inspecionar e editar a ficha de dados `personagem.json` no Bloco de Notas.",
+          "Diferenciar arquivos inofensivos de arquivos executáveis perigosos (.exe / .bat).",
+          "Aprender a regra de ouro da cibersegurança: desmascarar truques como `foto_do_passeio.png.exe`."
         ],
         projeto: {
-          nome: "Ficha de Personagem de RPG",
-          descricao: "Guarda nome, classe, nível de poder e vida do herói, exibindo um relatório formatado no terminal."
+          nome: "Laboratório de Extensões & Modificação de JSON",
+          descricao: "Edição de atributos de jogo em formato JSON e teste seguro com arquivos de lote (.bat)."
         },
-        dicaParaPais: "Peça para ele mostrar a 'ficha de herói' dele no terminal e pergunte quais atributos ele escolheu."
+        dicaParaPais: "Converse no almoço sobre como a internet tem armadilhas disfarçadas. Deixe ele te ensinar a ativar as extensões de arquivos no seu computador!"
       },
       {
         numero: 3,
-        titulo: "Interagindo com o Usuário (Entrada e Saída)",
-        resumo: "O programa passa a ouvir o usuário! Captura de respostas pelo teclado e conversão de textos em números.",
+        titulo: "A Ficha do Aluno vira Web (Estrutura Semântica HTML5)",
+        resumo: "Transformando o arquivo de texto puro em uma página web real acessível pelo navegador, usando as tags essenciais do HTML5.",
         objetivos: [
-          "Capturar entradas do teclado usando o pacote readline-sync.",
-          "Converter texto em números para operações matemáticas (Number / parseInt).",
-          "Realizar cálculos automáticos no terminal."
+          "Compreender como o navegador interpreta tags HTML.",
+          "Montar títulos, parágrafos, listas e imagens.",
+          "Publicar a Ficha do Aluno no Laboratório LiraCode."
         ],
         projeto: {
-          nome: "Gerador de Histórias Malucas",
-          descricao: "O programa pede palavras misteriosas ao usuário e monta uma história cômica personalizada."
+          nome: "Primeira Página Web da Ficha Pessoal",
+          descricao: "Apresentação online com foto, camisa oficial e descrição estruturada em HTML5."
         },
-        dicaParaPais: "Jogue o 'Gerador de Histórias' com ele! Responda as perguntas que o programa dele fizer e divirtam-se."
+        dicaParaPais: "Peça para ele abrir a página dele no navegador e mostre que aquilo é um site real nascendo!"
       }
     ]
   },
@@ -319,6 +395,9 @@ function obterSemanaAtual(semanaNumero) {
 module.exports = {
   SEMANA_ATUAL,
   dadosCurso,
+  alunosTurma,
+  galeriaMomentos,
+  perguntasAlmoco,
   modulos,
   dicasFamilia,
   obterSemanasComStatus,

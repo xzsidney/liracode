@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof titulo !== 'undefined' ? titulo : 'Projeto LiraCode • Aprenda a controlar o computador, não apenas usá-lo' %></title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Inter, Chakra Petch & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700;800&family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Configuration com a Paleta Oficial Rigorosa -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#b91c1c',        /* Bordô Rubro */
+              darkred: '#881337',    /* Vinho Nobre */
+              blue: '#1e3a8a',       /* Azul Real */
+              darkblue: '#0f172a',   /* Azul Profundo (Fundo) */
+              gold: '#eab308',       /* Dourado Imperial */
+              goldlight: '#fde047',  /* Dourado Claro */
+              accent: '#f59e0b'      /* Âmbar / Acento */
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Chakra Petch', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilos Próprios LiraCode -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="jersey-pattern text-slate-100 font-sans min-h-screen antialiased flex flex-col selection:bg-brand-gold selection:text-slate-950">
+
+  <!-- Header / Navbar Principal -->
+  <header class="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-md border-b-2 border-brand-gold shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Escudo / Logo da Família LiraCode -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-xl shield-frame flex items-center justify-center">
+          <i class="fa-solid fa-shield-halved text-brand-gold text-2xl drop-shadow"></i>
+        </div>
+        <div>
+          <div class="font-display font-extrabold text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-yellow-200 to-amber-400">
+            LIRA<span class="text-white">CODE</span>
+          </div>
+          <span class="text-[10px] sm:text-[11px] text-amber-300 font-semibold tracking-widest block uppercase">
+            Time da Tecnologia • 2026
+          </span>
+        </div>
+      </a>
+
+      <!-- Navegação Desktop -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        <a href="/" class="px-3.5 py-2 text-sm font-semibold rounded-lg <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'inicio') ? 'text-brand-gold bg-slate-900 border border-brand-gold/40' : 'text-slate-200 hover:text-brand-gold hover:bg-slate-900' %> transition flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-xs"></i> Início
+        </a>
+        <a href="/trilha" class="px-3.5 py-2 text-sm font-semibold rounded-lg <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'trilha') ? 'text-brand-gold bg-slate-900 border border-brand-gold/40' : 'text-slate-200 hover:text-brand-gold hover:bg-slate-900' %> transition flex items-center gap-1.5">
+          <i class="fa-solid fa-route text-xs"></i> Trilha de Estudos
+        </a>
+        <a href="/pais" class="px-3.5 py-2 text-sm font-semibold rounded-lg <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'pais') ? 'text-brand-gold bg-slate-900 border border-brand-gold/40' : 'text-amber-300 hover:text-brand-gold hover:bg-slate-900' %> transition flex items-center gap-1.5">
+          <i class="fa-solid fa-user-shield text-xs"></i> Área da Família
+        </a>
+        <a href="https://aula.liracode.com.br/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 text-sm font-semibold rounded-lg text-sky-400 hover:text-sky-300 hover:bg-slate-900 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-laptop-code text-xs"></i> Laboratório <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5 opacity-70"></i>
+        </a>
+      </nav>
+
+      <!-- Badge de Sábado & Botão Mobile -->
+      <div class="flex items-center gap-3">
+        <!-- Badge Pulsante de Sábado -->
+        <div class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-blue to-slate-900 border border-brand-gold/50 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-300 shadow">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Aulas aos Sábados
+        </div>
+
+        <!-- Botão Toggle Menu Mobile -->
+        <button id="mobileMenuBtn" aria-label="Abrir menu de navegação" class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-brand-gold/30 text-amber-300 hover:bg-slate-800 focus:outline-none transition">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Menu Mobile Dropdown (Mobile-First) -->
+    <div id="mobileMenu" class="hidden md:hidden bg-slate-950/98 border-t border-brand-gold/30 px-4 py-4 space-y-2.5 backdrop-blur-lg">
+      <div class="sm:hidden flex items-center gap-2 bg-slate-900/90 border border-brand-gold/40 px-3.5 py-2 rounded-xl text-xs font-bold text-amber-300 mb-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Aulas presenciais aos Sábados
+      </div>
+
+      <a href="/" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl font-semibold <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'inicio') ? 'bg-brand-red/30 border border-brand-gold text-brand-gold' : 'text-slate-200 hover:bg-slate-900' %>">
+        <i class="fa-solid fa-house text-brand-gold w-5"></i> Início (Home)
+      </a>
+      <a href="/trilha" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl font-semibold <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'trilha') ? 'bg-brand-red/30 border border-brand-gold text-brand-gold' : 'text-slate-200 hover:bg-slate-900' %>">
+        <i class="fa-solid fa-route text-brand-gold w-5"></i> Trilha de Estudos (12 Semanas)
+      </a>
+      <a href="/pais" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl font-semibold <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'pais') ? 'bg-brand-blue/40 border border-brand-gold text-amber-300' : 'text-amber-300 hover:bg-slate-900' %>">
+        <i class="fa-solid fa-user-shield text-brand-gold w-5"></i> Área dos Pais & Família
+      </a>
+      <a href="https://aula.liracode.com.br/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-semibold bg-sky-950/40 border border-sky-600/40 text-sky-300 hover:bg-sky-900/50">
+        <span class="flex items-center gap-2.5">
+          <i class="fa-solid fa-laptop-code text-sky-400 w-5"></i> Laboratório dos Alunos
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+      </a>
+    </div>
+  </header>

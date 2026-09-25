@@ -3,6 +3,10 @@ const path = require('path');
 const {
   SEMANA_ATUAL,
   dadosCurso,
+  alunosTurma,
+  galeriaMomentos,
+  perguntasAlmoco,
+  modulos,
   dicasFamilia,
   obterSemanasComStatus,
   obterSemanaAtual
@@ -18,9 +22,34 @@ app.set('views', path.join(__dirname, 'views'));
 // Arquivos estáticos (CSS, JS, Imagens)
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Rota principal: Home Page do Portal dos Pais
+// Helper para cálculo de métricas de progresso
+function calcularProgresso(semanaNumero) {
+  const totalSemanas = 12;
+  const concluidas = Math.max(0, semanaNumero - 1);
+  const porcentagemGeral = Math.round((concluidas / totalSemanas) * 100);
+  return {
+    totalSemanas,
+    concluidas,
+    porcentagemGeral,
+    statusTexto: `${concluidas} de ${totalSemanas} aulas concluídas (${porcentagemGeral}%)`
+  };
+}
+
+// 1. ROTA PRINCIPAL: Home Leve, Acolhedora e Nobre
 app.get('/', (req, res) => {
-  // Permite visualizar semanas específicas via query param (?semana=4) para testes e navegação
+  const semanaEmDestaque = obterSemanaAtual(SEMANA_ATUAL);
+  res.render('index', {
+    paginaAtiva: 'inicio',
+    curso: dadosCurso,
+    semanaAtual: semanaEmDestaque,
+    semanaNumeroAtual: SEMANA_ATUAL,
+    alunos: alunosTurma,
+    momentos: galeriaMomentos
+  });
+});
+
+// 2. ROTA DA TRILHA DE ESTUDOS: Cronograma 12 Semanas, Aula 02 & Downloads
+app.get('/trilha', (req, res) => {
   const semanaRequisitada = parseInt(req.query.semana, 10);
   const semanaNumero = (!isNaN(semanaRequisitada) && semanaRequisitada >= 1 && semanaRequisitada <= 12)
     ? semanaRequisitada
@@ -28,28 +57,31 @@ app.get('/', (req, res) => {
 
   const semanaEmDestaque = obterSemanaAtual(semanaNumero);
   const modulosCompletos = obterSemanasComStatus(semanaNumero);
+  const progresso = calcularProgresso(semanaNumero);
 
-  // Calcular métricas gerais de progresso
-  const totalSemanas = 12;
-  const isInicioCurso = (semanaNumero === 1);
-  const concluidas = isInicioCurso ? 0 : (semanaNumero - 1);
-  const porcentagemGeral = isInicioCurso ? 0 : Math.round((concluidas / totalSemanas) * 100);
-
-  res.render('index', {
+  res.render('trilha', {
+    paginaAtiva: 'trilha',
     curso: dadosCurso,
     semanaAtual: semanaEmDestaque,
     semanaNumeroAtual: semanaNumero,
     modulos: modulosCompletos,
+    progresso
+  });
+});
+
+// 3. ROTA DA ÁREA DOS PAIS & FAMÍLIA: Acompanhamento Semanal & Perguntas de Almoço
+app.get('/pais', (req, res) => {
+  const semanaEmDestaque = obterSemanaAtual(SEMANA_ATUAL);
+  const progresso = calcularProgresso(SEMANA_ATUAL);
+
+  res.render('pais', {
+    paginaAtiva: 'pais',
+    curso: dadosCurso,
+    semanaAtual: semanaEmDestaque,
+    semanaNumeroAtual: SEMANA_ATUAL,
     dicasFamilia,
-    isInicioCurso,
-    progresso: {
-      totalSemanas,
-      concluidas,
-      porcentagemGeral,
-      statusTexto: isInicioCurso 
-        ? "Preparação para o Primeiro Encontro! 0 de 12 aulas concluídas" 
-        : `${concluidas} de ${totalSemanas} aulas concluídas (${porcentagemGeral}%)`
-    }
+    perguntasAlmoco,
+    progresso
   });
 });
 
@@ -57,10 +89,13 @@ app.get('/', (req, res) => {
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`====================================================`);
-    console.log(`🏛️  LiraCode - Portal dos Pais`);
-    console.log(`🚀 Servidor rodando em: http://localhost:${PORT}`);
+    console.log(`🛡️  LiraCode - Sistema Principal`);
+    console.log(`🚀 Home Leve:        http://localhost:${PORT}/`);
+    console.log(`🧭 Trilha Completa:  http://localhost:${PORT}/trilha`);
+    console.log(`👨‍👩‍👧‍👦 Portal dos Pais:  http://localhost:${PORT}/pais`);
     console.log(`====================================================`);
   });
 }
 
 module.exports = app;
+

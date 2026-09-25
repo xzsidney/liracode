@@ -1,0 +1,154 @@
+  <!-- Rodapé Nobre Oficial -->
+  <footer class="bg-slate-950 text-slate-400 text-sm mt-auto border-t-2 border-brand-gold/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+        
+        <!-- Coluna da Marca & Propósito -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl shield-frame flex items-center justify-center">
+              <i class="fa-solid fa-shield-halved text-brand-gold text-lg"></i>
+            </div>
+            <div>
+              <span class="font-display font-black text-xl text-white tracking-wider">
+                LIRA<span class="text-brand-gold">CODE</span>
+              </span>
+              <span class="block text-[11px] text-amber-300 font-bold uppercase tracking-widest">
+                Formação Tecnológica & Cibersegurança
+              </span>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Treinando a nova geração para <strong>aprender a controlar o computador, não apenas usá-lo</strong>. Da anatomia do sistema operacional à cibersegurança e programação no mundo real.
+          </p>
+
+          <div class="flex items-center gap-2 pt-1">
+            <span class="w-3 h-3 rounded-full bg-brand-red shadow-sm" title="Bordô Rubro"></span>
+            <span class="w-3 h-3 rounded-full bg-brand-gold shadow-sm" title="Dourado Imperial"></span>
+            <span class="w-3 h-3 rounded-full bg-brand-blue shadow-sm" title="Azul Real"></span>
+            <span class="text-xs text-slate-400 font-mono ml-2">As Três Cores do Manto</span>
+          </div>
+        </div>
+
+        <!-- Coluna dos Dois Ambientes Oficiais -->
+        <div class="md:col-span-4 space-y-3">
+          <h4 class="font-display font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-network-wired text-brand-gold"></i> Ecossistema Oficial
+          </h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li>
+              <a href="https://liracode.com.br/" class="group flex items-center gap-2 text-slate-300 hover:text-brand-gold transition">
+                <i class="fa-solid fa-cube text-brand-gold group-hover:scale-110 transition-transform"></i>
+                <div>
+                  <span class="font-bold text-white block">liracode.com.br</span>
+                  <span class="text-slate-400 text-xs">Sistema Principal & Portal dos Pais</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="https://aula.liracode.com.br/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-slate-300 hover:text-sky-300 transition">
+                <i class="fa-solid fa-terminal text-sky-400 group-hover:scale-110 transition-transform"></i>
+                <div>
+                  <span class="font-bold text-sky-300 block flex items-center gap-1">
+                    aula.liracode.com.br <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                  </span>
+                  <span class="text-slate-400 text-xs">Laboratório & Vitrine Prática dos Alunos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Coluna de Contato & Suporte Familiar -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-display font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-comments text-brand-gold"></i> Canal com a Coordenação
+          </h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Dúvidas pedagógicas, feedback ou recados antes e depois das aulas de sábado:
+          </p>
+          <a href="https://wa.me/5511999998888" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600/90 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg transition transform active:scale-95">
+            <i class="fa-brands fa-whatsapp text-base"></i> Conversar no WhatsApp
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Barra Inferior com Dedicação à Turma -->
+      <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div class="text-slate-400 text-center sm:text-left">
+          &copy; 2026 <strong>Projeto LiraCode</strong>. Todos os direitos reservados.
+        </div>
+        <div class="text-slate-400 text-center sm:text-right">
+          Construído com honra e dedicação para <span class="text-amber-300 font-bold">Jonathan, Matheus, Henrique, Jenny e toda a turma</span>.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Modal Customizado Sem alert() -->
+  <div id="customModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border-2 border-brand-gold rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center gap-3">
+        <div id="modalIcon" class="w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-amber-500/20 text-brand-gold">
+          <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <h4 id="modalTitle" class="text-lg font-bold text-white font-display">Aviso do Sistema</h4>
+      </div>
+      <p id="modalBody" class="text-sm text-slate-300 leading-relaxed">
+        Texto da notificação.
+      </p>
+      <div class="pt-2 text-right">
+        <button onclick="fecharModal()" class="px-5 py-2 rounded-xl bg-brand-gold hover:bg-amber-400 text-slate-950 font-bold text-xs transition">
+          Entendi!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts Globais -->
+  <script>
+    // Menu Mobile
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    // Modal Global Seguro
+    function abrirModal(titulo, mensagem, tipo = 'info') {
+      const modal = document.getElementById('customModal');
+      const titleEl = document.getElementById('modalTitle');
+      const bodyEl = document.getElementById('modalBody');
+      const iconEl = document.getElementById('modalIcon');
+      if (!modal) return;
+
+      titleEl.innerText = titulo;
+      bodyEl.innerText = mensagem;
+
+      if (tipo === 'alerta') {
+        iconEl.className = 'w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-red-500/20 text-red-400';
+        iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+      } else {
+        iconEl.className = 'w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-emerald-500/20 text-emerald-400';
+        iconEl.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function fecharModal() {
+      const modal = document.getElementById('customModal');
+      if (modal) modal.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

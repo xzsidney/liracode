@@ -1,298 +1,388 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= curso.nome %> • Portal dos Pais (<%= curso.titulo %>)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+<%- include('partials/header', { 
+  titulo: 'Projeto LiraCode • Aprenda a controlar o computador, não apenas usá-lo',
+  paginaAtiva: 'inicio'
+}) %>
 
-  <!-- Barra Superior -->
-  <header class="topbar">
-    <div class="container topbar-content">
-      <a href="/" class="brand">
-        <div class="brand-icon">⚡</div>
-        <div class="brand-text">
-          <span class="brand-title"><%= curso.nome %><span>.portal</span></span>
-          <span class="brand-tag">Espaço da Família</span>
-        </div>
-      </a>
-      <div class="header-actions">
-        <a href="#modulo-trilha" class="meta-item" style="text-decoration:none;">
-          <span>🗓️ Cronograma 12 Semanas</span>
-        </a>
-        <a href="https://wa.me/5511999998888" target="_blank" class="btn-contact">
-          <span>💬 Canal com a Coordenação</span>
-        </a>
-      </div>
-    </div>
-  </header>
+<main class="flex-grow">
+  
+  <!-- HERO SECTION: O Propósito Nobre do Projeto -->
+  <section class="relative overflow-hidden py-12 lg:py-20 bg-gradient-to-b from-slate-950 via-brand-darkblue to-slate-900 border-b border-brand-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Coluna de Apresentação e Boas-Vindas -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-red/30 border border-brand-gold/60 text-amber-300 text-xs sm:text-sm font-bold tracking-wide shadow-sm">
+            <i class="fa-solid fa-microchip text-brand-gold"></i>
+            <span><%= curso.mentor %></span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white leading-tight">
+            Aprenda a controlar o computador, <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-yellow-200 to-amber-400">
+              não apenas usá-lo.
+            </span>
+          </h1>
 
-  <!-- Hero de Boas-Vindas -->
-  <section class="hero">
-    <div class="container">
-      <% if (isInicioCurso) { %>
-        <div class="badge-family" style="border-color: var(--gold-bright); color: var(--gold-bright); background: rgba(212, 175, 55, 0.18);">
-          <span>🚀 Turma Inaugural • Primeira Aula Prestes a Começar!</span>
-        </div>
-        <h1 class="hero-title">
-          Bem-vindos ao início da jornada em <br>
-          <span class="highlight"><%= curso.titulo %></span>
-        </h1>
-        <p class="hero-subtitle">
-          Estamos prestes a dar o pontapé inicial! Aqui os pais acompanham passo a passo o que os jovens vão aprender, os primeiros códigos no terminal e como incentivá-los em casa.
-        </p>
-      <% } else { %>
-        <div class="badge-family">
-          <span>👨‍👩‍👧‍👦 Acompanhamento Pedagógico Semanal</span>
-        </div>
-        <h1 class="hero-title">
-          Acompanhe a jornada do seu filho em <br>
-          <span class="highlight"><%= curso.titulo %></span>
-        </h1>
-        <p class="hero-subtitle">
-          Transparência completa sobre o que os jovens estão aprendendo, os projetos práticos desenvolvidos no terminal e dicas para fortalecer o raciocínio lógico em casa.
-        </p>
-      <% } %>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Um projeto acolhedor dedicado aos meus filhos e seus amigos (faixa etária de 10 a 16 anos). Ensinando os fundamentos que não ensinam na escola tradicional: anatomia do sistema operacional, estrutura de arquivos, cibersegurança real e raciocínio lógico estruturado!
+          </p>
 
-      <div class="hero-meta">
-        <div class="meta-item">
-          <span>🎯 <strong>Público:</strong> <%= curso.faixaEtaria %></span>
-        </div>
-        <div class="meta-item">
-          <span>⏱️ <strong>Formato:</strong> <%= curso.formato %></span>
-        </div>
-        <div class="meta-item">
-          <span>🗓️ <strong>Duração:</strong> <%= curso.duracaoTotal %></span>
-        </div>
-        <div class="meta-item">
-          <span>💻 <strong>Ambiente:</strong> Node.js & Terminal</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Card em Destaque: Aula da Semana -->
-  <main class="container featured-section">
-    <div class="featured-card">
-      <div class="featured-header">
-        <div>
-          <span class="featured-modulo-badge"><%= semanaAtual.moduloNome %>: <%= semanaAtual.moduloTitulo %></span>
-          <h2 class="featured-title">Semana <%= String(semanaAtual.numero).padStart(2, '0') %>: <%= semanaAtual.titulo %></h2>
-        </div>
-        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
-          <% if (semanaAtual.numero === 1 && isInicioCurso) { %>
-            <div class="featured-status-pill">
-              <span class="pulse-dot"></span>
-              <span>⭐ Aula Inaugural • Grande Estreia</span>
+          <!-- Badges de Metadados -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-xs text-slate-300">
+              <i class="fa-solid fa-users text-brand-gold"></i>
+              <span><strong>Público:</strong> <%= curso.faixaEtaria %></span>
             </div>
-            <span class="featured-week-tag">Primeiro Encontro (90 min)</span>
-          <% } else if (semanaAtual.numero === semanaNumeroAtual) { %>
-            <div class="featured-status-pill">
-              <span class="pulse-dot"></span>
-              <span>Aula em Destaque</span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-xs text-slate-300">
+              <i class="fa-solid fa-calendar-days text-amber-300"></i>
+              <span><strong>Encontros:</strong> <%= curso.formato %></span>
             </div>
-            <span class="featured-week-tag">Encontro 90 minutos</span>
-          <% } else { %>
-            <div class="featured-status-pill" style="background:var(--azul-accent);">
-              <span>Visualizando Semana <%= semanaAtual.numero %></span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-xs text-slate-300">
+              <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+              <span><strong>Status:</strong> <%= curso.statusTurma %></span>
             </div>
-            <span class="featured-week-tag">Encontro 90 minutos</span>
-          <% } %>
-        </div>
-      </div>
-
-      <p class="featured-summary">
-        <%= semanaAtual.resumo %>
-      </p>
-
-      <div class="featured-grid">
-        <!-- O que será aprendido -->
-        <div class="box-objectives">
-          <div class="box-title">
-            <span>🎯</span>
-            <h3>O que ele(a) vai aprender nesta aula:</h3>
-          </div>
-          <ul class="objectives-list">
-            <% semanaAtual.objetivos.forEach(function(obj) { %>
-              <li>
-                <span class="check-icon">✓</span>
-                <span><%= obj %></span>
-              </li>
-            <% }); %>
-          </ul>
-        </div>
-
-        <!-- Projeto Prático Construído -->
-        <div class="box-project">
-          <div class="box-title">
-            <span>🛠️</span>
-            <h3>Projeto Prático da Semana:</h3>
-          </div>
-          <div class="project-name"><%= semanaAtual.projeto.nome %></div>
-          <p class="project-desc"><%= semanaAtual.projeto.descricao %></p>
-          <div class="project-badge-tag">
-            <span>💻 Código 100% autoral em Node.js</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Caixa de Apoio da Família -->
-      <div class="parent-dialogue-box">
-        <div class="dialogue-icon">💡</div>
-        <div class="dialogue-content">
-          <h4>Dica para os pais no primeiro encontro:</h4>
-          <p><%= semanaAtual.dicaParaPais %></p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Barra Geral de Progresso -->
-  <section class="container">
-    <div class="progress-section">
-      <div class="progress-header">
-        <div class="progress-title">
-          <% if (isInicioCurso) { %>
-            <span>Status da Turma: <strong>Marco Inicial • Preparação para a Semana 01</strong></span>
-          <% } else { %>
-            <span>Progresso da Turma: <strong>Semana <%= semanaNumeroAtual %> de <%= progresso.totalSemanas %></strong></span>
-          <% } %>
-        </div>
-        <div class="progress-pct">
-          <% if (isInicioCurso) { %>
-            0 de <%= progresso.totalSemanas %> Aulas Concluídas • Aventura Começando!
-          <% } else { %>
-            <%= progresso.porcentagemGeral %>% da Trilha Concluída (<%= progresso.concluidas %>/<%= progresso.totalSemanas %>)
-          <% } %>
-        </div>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width: <%= isInicioCurso ? 5 : Math.max(progresso.porcentagemGeral, 8) %>%;"></div>
-      </div>
-      <% if (isInicioCurso) { %>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
-          🌱 <strong>Contagem Regressiva:</strong> Todos os 4 módulos e 12 semanas estão mapeados abaixo. A cada aula concluída, a barra e as insígnias serão atualizadas para você acompanhar a evolução do seu filho!
-        </p>
-      <% } %>
-    </div>
-  </section>
-
-  <!-- Trilha dos 4 Módulos -->
-  <section class="container modules-section" id="modulo-trilha">
-    <div class="section-title-wrap">
-      <h2 class="section-title">Trilha Pedagógica Completa</h2>
-      <p class="section-subtitle">Conheça o caminho evolutivo dos 4 módulos ao longo das 12 semanas de aula</p>
-    </div>
-
-    <div class="modules-grid">
-      <% modulos.forEach(function(mod) { %>
-        <div class="module-card <%= mod.status %>">
-          <div class="module-badge-status status-<%= mod.status %>">
-            <% if (mod.status === 'concluido') { %>
-              ✓ Concluído
-            <% } else if (mod.status === 'em-andamento') { %>
-              <%= isInicioCurso && mod.id === 1 ? '🌱 Módulo de Abertura' : '⏳ Em Andamento' %>
-            <% } else { %>
-              🔒 Próximas Aulas
-            <% } %>
           </div>
 
-          <div class="module-top">
-            <span class="module-icon"><%= mod.icone %></span>
-            <h3 class="module-name"><%= mod.nome %></h3>
+          <!-- Manto Oficial / Elenco dos Alunos Convocados -->
+          <div class="pt-4 border-t border-slate-800/80">
+            <p class="text-xs uppercase tracking-widest text-amber-300 font-bold mb-3 flex items-center justify-center lg:justify-start gap-1.5">
+              <i class="fa-solid fa-shirt text-brand-gold"></i>
+              <span>Manto Oficial da Turma (5 Talentos Convocados):</span>
+            </p>
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              <% alunos.forEach(function(aluno) { %>
+                <div class="student-badge <%= aluno.cor === 'red' ? 'student-badge-red' : 'student-badge-blue' %>" title="<%= aluno.funcao %>">
+                  <i class="fa-solid fa-shirt"></i>
+                  <span><%= aluno.nome %> <%= aluno.numero %></span>
+                </div>
+              <% }); %>
+            </div>
           </div>
-          <div class="module-period"><%= mod.titulo %> • <%= mod.periodo %></div>
-          <p class="module-desc"><%= mod.descricao %></p>
 
-          <ul class="module-weeks-list">
-            <% mod.semanas.forEach(function(sem) { %>
-              <li class="week-item <%= sem.numero === semanaNumeroAtual ? 'is-current' : '' %>">
-                <a href="/?semana=<%= sem.numero %>" class="week-title-link" title="Clique para ver os detalhes da Semana <%= sem.numero %>">
-                  <span>Semana <%= sem.numero %>: <%= sem.titulo.split('(')[0] %></span>
-                </a>
-                <span class="week-indicator <%= sem.status === 'concluida' ? 'done' : (sem.status === 'em-andamento' ? 'current' : 'upcoming') %>">
-                  <% if (sem.status === 'concluida') { %>
-                    ✓
-                  <% } else if (sem.status === 'em-andamento') { %>
-                    <%= isInicioCurso && sem.numero === 1 ? 'Estreia' : 'Ativa' %>
-                  <% } else { %>
-                    •
-                  <% } %>
+        </div>
+
+        <!-- Coluna Visual / Cartão Tático de Boas-Vindas -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md bg-gradient-to-b from-brand-red via-red-950 to-brand-blue rounded-3xl p-1 border-2 border-brand-gold shadow-2xl badge-glow">
+            <div class="bg-slate-950/95 rounded-[22px] p-6 sm:p-7 space-y-5">
+              
+              <!-- Cabeçalho do Card -->
+              <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-brand-red shadow"></span>
+                  <span class="w-3.5 h-3.5 rounded-full bg-brand-gold shadow"></span>
+                  <span class="w-3.5 h-3.5 rounded-full bg-brand-blue shadow"></span>
+                </div>
+                <span class="text-xs font-mono text-amber-300 bg-amber-950/70 px-2.5 py-0.5 rounded border border-brand-gold/40">
+                  ERA 486 ➔ 2026
                 </span>
-              </li>
-            <% }); %>
-          </ul>
-        </div>
-      <% }); %>
-    </div>
-  </section>
+              </div>
 
-  <!-- Espaço da Família & Dicas Pedagógicas -->
-  <section class="family-space-section">
-    <div class="container">
-      <div class="section-title-wrap">
-        <h2 class="section-title">Como Apoiar seu Filho(a) na Programação</h2>
-        <p class="section-subtitle">Orientações pedagógicas preparadas pelos nossos instrutores para os pais</p>
-      </div>
+              <!-- Missão -->
+              <div class="space-y-2">
+                <div class="text-xs font-bold uppercase tracking-wider text-brand-gold flex items-center gap-2">
+                  <i class="fa-solid fa-crosshairs"></i> O Propósito Central
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300 bg-slate-900/90 p-4 rounded-xl border border-slate-800 leading-relaxed">
+                  Não é sobre apenas apertar botões ou decorar telas. É sobre <strong>entender o que o sistema operacional faz por trás dos panos</strong>, como arquivos funcionam e como nos blindamos na internet.
+                </p>
+              </div>
 
-      <div class="family-tips-grid">
-        <% dicasFamilia.forEach(function(dica) { %>
-          <div class="tip-card">
-            <div class="tip-icon"><%= dica.icone %></div>
-            <h3 class="tip-title"><%= dica.titulo %></h3>
-            <p class="tip-desc"><%= dica.descricao %></p>
-          </div>
-        <% }); %>
-      </div>
-    </div>
-  </section>
+              <!-- Destaque da Semana Ativa -->
+              <div class="p-4 rounded-2xl bg-gradient-to-r from-brand-red/30 via-slate-900 to-amber-950/40 border border-brand-gold/50 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
+                    Aula da Semana: Semana 02
+                  </span>
+                  <span class="text-xs text-amber-300 font-mono">Sábado</span>
+                </div>
+                <h3 class="text-sm font-bold text-white font-display">
+                  O Crachá dos Arquivos: .txt, .json, .png, .exe
+                </h3>
+                <p class="text-xs text-slate-300">
+                  Desmascarando extensões ocultas no Windows e a pegadinha de malwares como <code class="text-brand-gold">foto.png.exe</code>.
+                </p>
+                <div class="pt-2">
+                  <a href="/trilha?semana=2" class="inline-flex items-center gap-2 text-xs font-bold text-brand-gold hover:text-yellow-200 transition">
+                    <span>Ver detalhes da aula prática</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                  </a>
+                </div>
+              </div>
 
-  <!-- Rodapé -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="brand">
-            <div class="brand-icon">⚡</div>
-            <div class="brand-text">
-              <span class="brand-title"><%= curso.nome %></span>
-              <span class="brand-tag">Formação em Tecnologia para Jovens</span>
             </div>
           </div>
-          <p>
-            Desenvolvendo pensamento crítico, resolução de problemas e autonomia digital para o futuro através do código.
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO: OS 3 PORTAIS DE ENTRADA DO ECOSSISTEMA -->
+  <section class="py-16 bg-slate-900/90 border-b border-brand-gold/20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-gold bg-brand-gold/10 px-3.5 py-1.5 rounded-full border border-brand-gold/30 inline-block">
+          NAVEGAÇÃO RÁPIDA & OBJETIVA
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white">
+          Os 3 Portais do Ecossistema LiraCode
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base">
+          Escolha seu destino para acompanhar o aprendizado, explorar os conteúdos semanais ou testar os códigos construídos.
+        </p>
+      </div>
+
+      <!-- Grid dos 3 Cards de Entrada -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- PORTAL 1: Trilha de Estudos -->
+        <div class="portal-card p-7 flex flex-col justify-between group">
+          <div class="space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-brand-red/20 border border-brand-red text-red-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-lg">
+              <i class="fa-solid fa-route"></i>
+            </div>
+            
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-1">
+                Cronograma de 12 Aulas
+              </div>
+              <h3 class="text-2xl font-bold font-display text-white group-hover:text-brand-gold transition-colors">
+                Trilha de Estudos
+              </h3>
+            </div>
+
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Mural completo aula a aula. Confira o que já aprendemos, o foco da <strong>Aula 02 de Cibersegurança</strong> e baixe os arquivos de treino para praticar no computador.
+            </p>
+
+            <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-4">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span>Linha do tempo das 12 semanas</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span>Downloads de arquivos .json, .txt, .bat</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span>Simulador de extensões do Windows</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-6">
+            <a href="/trilha" class="w-full py-3.5 px-4 rounded-xl font-bold bg-gradient-to-r from-brand-red to-brand-darkred hover:brightness-110 text-white flex items-center justify-center gap-2 border border-brand-gold/40 shadow-lg transition">
+              <span>Acessar Trilha de Estudos</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PORTAL 2: Área dos Pais & Família -->
+        <div class="portal-card p-7 flex flex-col justify-between group border-brand-gold/50 shadow-xl">
+          <div class="space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-brand-gold/20 border border-brand-gold text-brand-gold flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-lg">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-amber-300 mb-1">
+                Espaço Exclusivo da Família
+              </div>
+              <h3 class="text-2xl font-bold font-display text-white group-hover:text-amber-300 transition-colors">
+                Área dos Pais
+              </h3>
+            </div>
+
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Explicado em linguagem humana, sem termos difíceis. Veja o valor pedagógico do que seu filho está aprendendo e confira <strong>perguntas práticas para conversar no almoço de domingo</strong>.
+            </p>
+
+            <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-4">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-amber-400"></i>
+                <span>Resumo da semana sem jargão técnico</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-amber-400"></i>
+                <span>Perguntas para o almoço em família</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-amber-400"></i>
+                <span>Canal direto com o mentor no WhatsApp</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-6">
+            <a href="/pais" class="w-full py-3.5 px-4 rounded-xl font-bold bg-gradient-to-r from-brand-gold to-amber-500 hover:brightness-110 text-slate-950 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition">
+              <span>Acessar Portal da Família</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PORTAL 3: Laboratório dos Alunos (Link Externo) -->
+        <div class="portal-card p-7 flex flex-col justify-between group">
+          <div class="space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-brand-blue/30 border border-blue-500 text-sky-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-lg">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-1">
+                Subdomínio de Prática & Portfólio
+              </div>
+              <h3 class="text-2xl font-bold font-display text-white group-hover:text-sky-300 transition-colors">
+                Laboratório dos Alunos
+              </h3>
+            </div>
+
+            <p class="text-sm text-slate-300 leading-relaxed">
+              O ambiente prático onde os alunos sobem suas fichas pessoais, páginas web, experimentos em HTML/CSS e scripts. O verdadeiro palco de criações da turma!
+            </p>
+
+            <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-4">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-sky-400"></i>
+                <span>Acesso: <strong class="text-slate-200">aula.liracode.com.br</strong></span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-sky-400"></i>
+                <span>Fichas e projetos individuais</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-sky-400"></i>
+                <span>Páginas publicadas pelos alunos</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-6">
+            <a href="https://aula.liracode.com.br/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl font-bold bg-gradient-to-r from-brand-blue to-blue-700 hover:brightness-110 text-white flex items-center justify-center gap-2 border border-blue-400/40 shadow-lg transition">
+              <span>Entrar no Laboratório</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO: MURAL DE MOMENTOS DA TURMA -->
+  <section class="py-16 bg-slate-950 border-b border-brand-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand-gold bg-brand-gold/10 px-3.5 py-1.5 rounded-full border border-brand-gold/30 inline-block mb-3">
+            MEMÓRIAS & EVOLUÇÃO
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white">
+            Mural de Fotos & Momentos da Turma
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl">
+            Registros visuais do aprendizado em sala, dos desafios superados no computador e do espírito de equipe de cada sábado.
           </p>
         </div>
 
-        <div class="footer-col">
-          <h4>Ferramentas do Curso</h4>
-          <ul class="footer-links">
-            <% curso.ferramentas.forEach(function(ferramenta) { %>
-              <li>• <%= ferramenta %></li>
-            <% }); %>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Atendimento aos Pais</h4>
-          <ul class="footer-links">
-            <li>📱 WhatsApp: <%= curso.contatoSuporte.whatsapp %></li>
-            <li>✉️ E-mail: <%= curso.contatoSuporte.email %></li>
-            <li>⏰ <%= curso.contatoSuporte.horarioAtendimento %></li>
-          </ul>
+        <div class="text-xs text-amber-300 font-mono flex items-center gap-2">
+          <i class="fa-solid fa-camera text-brand-gold"></i>
+          <span>Atualizado a cada encontro presencial</span>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 <%= curso.nome %>. Todos os direitos reservados. Portal de Transparência Pedagógica da Família.</p>
+      <!-- Grid de Cards do Mural -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <% momentos.forEach(function(item) { %>
+          <div class="mural-card flex flex-col justify-between group">
+            
+            <!-- Topo do Card com Ilustração Tática / Gradiente Nobre -->
+            <div class="h-44 bg-gradient-to-br <%= item.gradiente %> p-5 flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+
+              <div class="flex items-center justify-between z-10">
+                <span class="px-2.5 py-1 rounded-md bg-slate-950/80 border <%= item.corBorda %> text-[10px] font-bold uppercase tracking-wider text-amber-300 font-display">
+                  <%= item.categoria %>
+                </span>
+                <span class="text-[11px] text-white/80 font-mono">
+                  #0<%= item.id %>
+                </span>
+              </div>
+
+              <!-- Ícone Central do Momento -->
+              <div class="flex items-center gap-3 z-10">
+                <div class="w-12 h-12 rounded-xl bg-slate-950/70 border border-brand-gold/40 flex items-center justify-center text-2xl text-brand-gold shadow group-hover:scale-110 transition-transform">
+                  <i class="<%= item.icone %>"></i>
+                </div>
+                <div class="text-xs font-mono font-bold text-amber-200">
+                  <%= item.detalhe %>
+                </div>
+              </div>
+            </div>
+
+            <!-- Corpo Textual do Card -->
+            <div class="p-5 flex-grow flex flex-col justify-between space-y-3 bg-slate-900/90">
+              <div>
+                <span class="text-[11px] text-brand-gold font-semibold uppercase tracking-wider block">
+                  <%= item.subtitulo %>
+                </span>
+                <h3 class="text-base font-bold font-display text-white mt-1 group-hover:text-amber-300 transition-colors">
+                  <%= item.titulo %>
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed mt-2">
+                  <%= item.descricao %>
+                </p>
+              </div>
+
+              <div class="pt-2 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+                <span>Presença Confirmada</span>
+                <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-double mr-1"></i> 100% Turma</span>
+              </div>
+            </div>
+
+          </div>
+        <% }); %>
       </div>
+
+      <!-- Banner de Incentivo Familiar -->
+      <div class="mt-12 p-6 rounded-3xl bg-gradient-to-r from-brand-blue/30 via-slate-900 to-brand-red/30 border-2 border-brand-gold/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="flex items-center gap-4 text-center sm:text-left">
+          <div class="w-12 h-12 rounded-2xl bg-brand-gold text-slate-950 flex items-center justify-center text-2xl font-bold flex-shrink-0 shadow">
+            <i class="fa-solid fa-shield-cat"></i>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white font-display">
+              A cada sábado, uma nova conquista desbloqueada!
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Acompanhe a trilha para saber o que já está disponível e prepare seu filho para a aula de amanhã.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="/trilha" class="px-5 py-2.5 rounded-xl bg-brand-gold text-slate-950 font-bold text-xs hover:brightness-110 transition whitespace-nowrap shadow">
+            Ver Trilha Completa
+          </a>
+          <a href="/pais" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-bold text-xs transition whitespace-nowrap">
+            Dicas para Pais
+          </a>
+        </div>
+      </div>
+
     </div>
-  </footer>
+  </section>
 
-</body>
-</html>
+</main>
+
+<%- include('partials/footer') %>

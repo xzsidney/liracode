@@ -1,0 +1,458 @@
+<%- include('partials/header', { 
+  titulo: 'Trilha de Estudos • Projeto LiraCode (12 Semanas)',
+  paginaAtiva: 'trilha'
+}) %>
+
+<main class="flex-grow">
+  
+  <!-- CABEÇALHO DA TRILHA -->
+  <section class="py-12 bg-gradient-to-b from-slate-950 via-slate-900 to-brand-darkblue border-b border-brand-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-red/30 border border-brand-gold/60 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+            <i class="fa-solid fa-route text-brand-gold"></i>
+            <span>Plano de Voo das 12 Semanas</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-white">
+            Trilha de Estudos & Cibersegurança
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-3xl">
+            Acompanhe o mapa das 12 aulas práticas aos sábados. Cada encontro adiciona um superpoder no computador dos nossos jovens.
+          </p>
+        </div>
+
+        <!-- Card de Progresso Global -->
+        <div class="bg-slate-950/90 p-5 rounded-2xl border-2 border-brand-gold/40 shadow-xl min-w-[280px]">
+          <div class="flex items-center justify-between text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">
+            <span>Progresso da Turma</span>
+            <span class="text-brand-gold font-mono font-black text-sm"><%= progresso.porcentagemGeral %>%</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700 overflow-hidden mb-2">
+            <div class="bg-gradient-to-r from-brand-red via-brand-gold to-emerald-400 h-full rounded-full transition-all duration-500" style="width: <%= Math.max(progresso.porcentagemGeral, 10) %>%;"></div>
+          </div>
+          <div class="text-[11px] text-slate-400 text-right">
+            Semana <strong><%= semanaNumeroAtual %></strong> de <%= progresso.totalSemanas %> • <%= progresso.concluidas %> concluídas
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DESTAQUE ESPECIAL DA AULA 02 (AULA ATUAL DE CIBERSEGURANÇA) -->
+  <% if (semanaAtual.numero === 2 || semanaNumeroAtual === 2) { %>
+    <section class="py-12 bg-slate-900/95 border-b border-brand-gold/30 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header da Aula 02 -->
+        <div class="bg-slate-950 rounded-3xl p-6 sm:p-10 border-2 border-brand-gold shadow-2xl relative overflow-hidden space-y-8">
+          <div class="absolute -right-16 -top-16 w-56 h-56 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <span class="px-4 py-1.5 rounded-full bg-brand-gold/20 text-brand-gold border border-brand-gold/50 text-xs font-bold animate-pulse font-display">
+                ⚡ AULA ATUAL (SÁBADO)
+              </span>
+              <span class="text-xs text-amber-300 font-mono">
+                <i class="fa-regular fa-clock mr-1"></i> Aula 02 de 12 (90 minutos)
+              </span>
+            </div>
+            <span class="text-xs font-bold text-red-200 bg-red-950/80 px-3 py-1 rounded-full border border-red-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-shield-virus text-red-400"></i> Foco Central: Cibersegurança & Extensões
+            </span>
+          </div>
+
+          <div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-white">
+              O Crachá dos Arquivos: Extensões (.txt, .json, .png, .exe) e Riscos Digitais
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed max-w-4xl">
+              <%= semanaAtual.resumo %>
+            </p>
+          </div>
+
+          <!-- 3 Pilares Práticos da Aula 02 -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3 hover:border-amber-400/50 transition">
+              <div class="font-bold text-amber-400 text-xs uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-wrench text-base"></i> Prática 1: Desmascarar o Windows
+              </div>
+              <h3 class="text-sm font-bold text-white">Exibir Extensões Ocultas</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Ativar no Explorador de Arquivos do Windows a opção que revela o sobrenome real de qualquer arquivo, acabando com o truque dos vírus invisíveis.
+              </p>
+            </div>
+
+            <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3 hover:border-sky-400/50 transition">
+              <div class="font-bold text-sky-400 text-xs uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-gamepad text-base"></i> Prática 2: JSON do Personagem
+              </div>
+              <h3 class="text-sm font-bold text-white">Manipulação de Dados</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Baixar <code class="text-amber-300 bg-slate-950 px-1.5 py-0.5 rounded">personagem.json</code>, abrir no Bloco de Notas, alterar vida para 999 e compreender como dados estruturados funcionam.
+              </p>
+            </div>
+
+            <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3 hover:border-red-400/50 transition">
+              <div class="font-bold text-red-400 text-xs uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-skull-crossbones text-base"></i> Prática 3: O Perigo do .EXE
+              </div>
+              <h3 class="text-sm font-bold text-white">A Pegadinha do Discord</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Entender por que executáveis baixados da internet podem controlar o PC e por que armadilhas com extensão dupla como <code class="text-red-300 bg-red-950 px-1 py-0.5 rounded">foto.png.exe</code> são tão perigosas.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- BOTÕES DE DOWNLOAD DOS ARQUIVOS DE TREINO -->
+          <div class="pt-6 border-t border-slate-800 flex flex-col lg:flex-row lg:items-center justify-between gap-5 bg-slate-900/50 -mx-6 -mb-6 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-3xl">
+            <div>
+              <span class="text-xs font-bold text-brand-gold uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-cloud-arrow-down text-base"></i> Arquivos Oficiais de Treino (Downloads Seguros):
+              </span>
+              <p class="text-xs text-slate-300 mt-1">
+                Baixe no computador para acompanhar e praticar as modificações feitas em sala de aula.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2.5">
+              <button onclick="baixarModelo('json')" class="px-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold rounded-xl border border-amber-500/50 flex items-center gap-2 transition active:scale-95 shadow">
+                <i class="fa-solid fa-file-code"></i> Ficha JSON
+              </button>
+              <button onclick="baixarModelo('txt')" class="px-4 py-2.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-bold rounded-xl border border-emerald-500/50 flex items-center gap-2 transition active:scale-95 shadow">
+                <i class="fa-solid fa-file-lines"></i> Texto TXT
+              </button>
+              <button onclick="baixarModelo('bat')" class="px-4 py-2.5 bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-bold rounded-xl border border-red-500/50 flex items-center gap-2 transition active:scale-95 shadow">
+                <i class="fa-solid fa-terminal"></i> Script Seguro (.bat)
+              </button>
+              <button onclick="baixarModelo('png')" class="px-4 py-2.5 bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-bold rounded-xl border border-sky-500/50 flex items-center gap-2 transition active:scale-95 shadow">
+                <i class="fa-solid fa-image"></i> Escudo PNG
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SIMULADOR INTERATIVO: O CRACHÁ DOS ARQUIVOS -->
+    <section class="py-12 bg-slate-950 border-b border-brand-gold/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-brand-darkblue rounded-3xl p-6 sm:p-10 border-2 border-slate-800 space-y-8">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/30 inline-block mb-2">
+                SIMULADOR DIDÁTICO
+              </span>
+              <h3 class="text-2xl sm:text-3xl font-extrabold font-display text-white">
+                Como o Windows Enxerga o Arquivo vs. O Que Você Vê
+              </h3>
+            </div>
+
+            <!-- Toggle de Ocultar/Mostrar Extensão -->
+            <div class="bg-slate-900 p-3 rounded-2xl border border-brand-gold/40 flex items-center gap-3">
+              <span class="text-xs font-bold text-slate-300">Mostrar extensões no Windows?</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="hideExtToggle" onchange="atualizarSimulador()" class="sr-only peer">
+                <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+              </label>
+              <span id="labelToggle" class="text-xs font-mono font-bold text-red-400">Ocultas (Padrão)</span>
+            </div>
+          </div>
+
+          <p class="text-slate-300 text-sm leading-relaxed max-w-4xl">
+            Muitos computadores novos vêm de fábrica configurados para <em>esconder</em> o crachá (.extensão). Malwares exploram isso para mandar um vírus chamado <code class="bg-slate-800 text-amber-300 px-2 py-0.5 rounded">foto_do_passeio.png.exe</code>. Clique nos arquivos abaixo para ver o perigo:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            
+            <!-- Botões de Seleção do Arquivo -->
+            <div class="md:col-span-6 space-y-3">
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                Escolha o arquivo para inspecionar no simulador:
+              </label>
+              <button onclick="selecionarArquivo('foto_da_galera.png')" class="file-btn active-file w-full text-left px-4 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-brand-gold text-sm font-mono text-slate-200 flex justify-between items-center transition">
+                <span>foto_da_galera.png</span>
+                <span class="text-[11px] text-sky-400 font-bold">Imagem Real</span>
+              </button>
+              <button onclick="selecionarArquivo('personagem_game.json')" class="file-btn w-full text-left px-4 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-sm font-mono text-slate-200 flex justify-between items-center transition">
+                <span>personagem_game.json</span>
+                <span class="text-[11px] text-amber-400 font-bold">Ficha de Dados</span>
+              </button>
+              <button onclick="selecionarArquivo('foto_do_passeio.png.exe')" class="file-btn w-full text-left px-4 py-3.5 rounded-xl bg-red-950/40 hover:bg-red-900/50 border border-red-700/60 text-sm font-mono text-red-200 flex justify-between items-center transition">
+                <span>foto_do_passeio.png.exe</span>
+                <span class="text-[11px] text-red-400 font-bold">⚠️ Pegadinha Hacker!</span>
+              </button>
+            </div>
+
+            <!-- Painel de Inspeção do Windows -->
+            <div class="md:col-span-6">
+              <div class="bg-slate-900 p-6 rounded-2xl border-2 border-dashed border-slate-700 space-y-4 shadow-xl">
+                <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center justify-between">
+                  <span>O que aparece na tela do aluno:</span>
+                  <span class="text-[11px] text-brand-gold font-mono font-bold">Status do Explorador</span>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center gap-3">
+                  <div id="fileIconBox" class="w-12 h-12 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl shadow">
+                    <i class="fa-solid fa-image"></i>
+                  </div>
+                  <div>
+                    <div id="nomeVisivel" class="font-mono font-bold text-white text-base">foto_da_galera.png</div>
+                    <div id="tipoReal" class="text-xs text-slate-400">Tipo: Arquivo de Imagem PNG (Legítimo)</div>
+                  </div>
+                </div>
+
+                <div id="alertaSeguranca" class="p-4 rounded-xl text-xs leading-relaxed">
+                  <!-- Injetado dinamicamente -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  <% } %>
+
+  <!-- CRONOGRAMA COMPLETO DAS 12 SEMANAS (4 MÓDULOS) -->
+  <section class="py-16 bg-slate-900 border-b border-brand-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-gold bg-brand-gold/10 px-3.5 py-1.5 rounded-full border border-brand-gold/30 inline-block">
+          GRADE PEDAGÓGICA INTEGRAL
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white">
+          Os 4 Módulos de Evolução do Aluno
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base">
+          Clique nas aulas para alternar a visualização dos objetivos e entender a linha de aprendizado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <% modulos.forEach(function(mod) { %>
+          <div class="bg-slate-950 rounded-3xl p-6 sm:p-8 border-2 <%= mod.status === 'em-andamento' ? 'border-brand-gold shadow-2xl' : 'border-slate-800' %> flex flex-col justify-between">
+            <div class="space-y-4">
+              
+              <div class="flex items-center justify-between">
+                <span class="text-2xl"><%= mod.icone %></span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold <%= mod.status === 'concluido' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : (mod.status === 'em-andamento' ? 'bg-brand-gold/20 text-brand-gold border border-brand-gold/50' : 'bg-slate-800 text-slate-400') %>">
+                  <%= mod.status === 'concluido' ? '✓ Concluído' : (mod.status === 'em-andamento' ? '⏳ Módulo Atual' : '🔒 Próximas Aulas') %>
+                </span>
+              </div>
+
+              <div>
+                <span class="text-xs text-brand-gold font-bold uppercase tracking-wider block font-display">
+                  <%= mod.nome %> • <%= mod.periodo %>
+                </span>
+                <h3 class="text-xl font-bold font-display text-white mt-1">
+                  <%= mod.titulo %>
+                </h3>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <%= mod.descricao %>
+              </p>
+
+              <!-- Lista das Aulas do Módulo -->
+              <div class="space-y-2.5 pt-4 border-t border-slate-800/80">
+                <% mod.semanas.forEach(function(sem) { %>
+                  <a href="/trilha?semana=<%= sem.numero %>" class="block p-3 rounded-xl border transition <%= sem.numero === semanaNumeroAtual ? 'bg-brand-red/30 border-brand-gold text-white shadow-md' : 'bg-slate-900/70 border-slate-800 hover:border-slate-700 text-slate-300' %>">
+                    <div class="flex items-center justify-between text-xs font-bold">
+                      <span class="font-display">Aula <%= String(sem.numero).padStart(2, '0') %>: <%= sem.titulo.split('(')[0] %></span>
+                      <span class="<%= sem.status === 'concluida' ? 'text-emerald-400' : (sem.status === 'em-andamento' ? 'text-brand-gold' : 'text-slate-500') %>">
+                        <%= sem.status === 'concluida' ? '✓' : (sem.status === 'em-andamento' ? 'Ativa' : '•') %>
+                      </span>
+                    </div>
+                  </a>
+                <% }); %>
+              </div>
+
+            </div>
+          </div>
+        <% }); %>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- SCRIPT ESPECÍFICO DO SIMULADOR E DOWNLOADS -->
+<script>
+  let arquivoSelecionado = 'foto_da_galera.png';
+
+  function selecionarArquivo(nome) {
+    arquivoSelecionado = nome;
+
+    document.querySelectorAll('.file-btn').forEach(btn => {
+      if (btn.innerText.includes(nome)) {
+        btn.classList.add('border-brand-gold', 'bg-slate-700/80');
+      } else {
+        btn.classList.remove('border-brand-gold', 'bg-slate-700/80');
+      }
+    });
+
+    atualizarSimulador();
+  }
+
+  function atualizarSimulador() {
+    const ocultarExt = !document.getElementById('hideExtToggle').checked;
+    const labelToggle = document.getElementById('labelToggle');
+    const nomeVisivelEl = document.getElementById('nomeVisivel');
+    const tipoRealEl = document.getElementById('tipoReal');
+    const fileIconBox = document.getElementById('fileIconBox');
+    const alertaEl = document.getElementById('alertaSeguranca');
+
+    if (!ocultarExt) {
+      labelToggle.className = 'text-xs font-mono font-bold text-emerald-400';
+      labelToggle.innerText = 'Visíveis (Seguro!)';
+    } else {
+      labelToggle.className = 'text-xs font-mono font-bold text-red-400';
+      labelToggle.innerText = 'Ocultas (Padrão)';
+    }
+
+    if (arquivoSelecionado === 'foto_da_galera.png') {
+      const nomeFinal = ocultarExt ? 'foto_da_galera' : 'foto_da_galera.png';
+      nomeVisivelEl.innerText = nomeFinal;
+      tipoRealEl.innerText = 'Tipo: Arquivo de Imagem PNG (Legítimo)';
+      fileIconBox.className = 'w-12 h-12 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl';
+      fileIconBox.innerHTML = '<i class="fa-solid fa-image"></i>';
+
+      alertaEl.className = 'p-3.5 rounded-xl text-xs bg-emerald-950/40 border border-emerald-500/30 text-emerald-200';
+      alertaEl.innerHTML = '<strong>Arquivo Seguro:</strong> O sistema abre no visualizador de fotos padrão. Não há risco de infecção.';
+    } 
+    else if (arquivoSelecionado === 'personagem_game.json') {
+      const nomeFinal = ocultarExt ? 'personagem_game' : 'personagem_game.json';
+      nomeVisivelEl.innerText = nomeFinal;
+      tipoRealEl.innerText = 'Tipo: Documento JSON (Estrutura de Dados)';
+      fileIconBox.className = 'w-12 h-12 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl';
+      fileIconBox.innerHTML = '<i class="fa-solid fa-file-code"></i>';
+
+      alertaEl.className = 'p-3.5 rounded-xl text-xs bg-amber-950/40 border border-amber-500/30 text-amber-200';
+      alertaEl.innerHTML = '<strong>Arquivo de Dados:</strong> Contém informações estruturadas de jogo ou sistema. Abre com Bloco de Notas.';
+    } 
+    else if (arquivoSelecionado === 'foto_do_passeio.png.exe') {
+      const nomeFinal = ocultarExt ? 'foto_do_passeio.png' : 'foto_do_passeio.png.exe';
+      nomeVisivelEl.innerText = nomeFinal;
+      
+      fileIconBox.className = 'w-12 h-12 rounded-lg bg-red-500/30 text-red-400 flex items-center justify-center text-2xl animate-pulse';
+      fileIconBox.innerHTML = '<i class="fa-solid fa-skull"></i>';
+
+      if (ocultarExt) {
+        tipoRealEl.innerHTML = '<span class="text-red-400 font-bold">⚠️ Perigo Invisível: O arquivo é .EXE, mas parece imagem!</span>';
+        alertaEl.className = 'p-3.5 rounded-xl text-xs bg-red-950 border border-red-500 text-red-200 space-y-1';
+        alertaEl.innerHTML = `
+          <div class="font-bold flex items-center gap-1.5 text-amber-300">
+            <i class="fa-solid fa-triangle-exclamation"></i> ARMADILHA ARMADA!
+          </div>
+          <div>Como a caixa de extensões está <strong>oculta</strong> no Windows, a vítima acha que está clicando numa foto inofensiva, mas na verdade executa um programa que pode apagar arquivos ou roubar senhas!</div>
+        `;
+      } else {
+        tipoRealEl.innerHTML = '<span class="text-amber-300 font-bold">Extensão real revelada (.exe no final)</span>';
+        alertaEl.className = 'p-3.5 rounded-xl text-xs bg-emerald-950/60 border border-brand-gold text-amber-200 space-y-1';
+        alertaEl.innerHTML = `
+          <div class="font-bold flex items-center gap-1.5 text-brand-gold">
+            <i class="fa-solid fa-shield-check"></i> DISFARCE DESMASCARADO!
+          </div>
+          <div>Com a opção <em>"Mostrar extensões"</em> ativada, o aluno percebe imediatamente o <code class="text-white bg-slate-900 px-1 rounded">.exe</code> no final do nome e não cai no golpe.</div>
+        `;
+      }
+    }
+  }
+
+  // Gerador de downloads de modelos reais via Blob (seguro e funcional no navegador)
+  function baixarModelo(tipo) {
+    let conteudo = '';
+    let nomeArquivo = '';
+    let mimeType = 'text/plain';
+
+    if (tipo === 'txt') {
+      nomeArquivo = 'minha_anotacao.txt';
+      conteudo = "Projeto LiraCode - Aula 01 e 02\n\nParabéns! Você abriu um arquivo de texto puro.\nArquivos .txt não contêm códigos nocivos e são o meio mais simples de salvar anotações no computador.";
+    } else if (tipo === 'json') {
+      nomeArquivo = 'personagem_game.json';
+      mimeType = 'application/json';
+      conteudo = JSON.stringify({
+        "jogo": "LiraCode RPG",
+        "personagem": "Guerreiro 486",
+        "nivel": 15,
+        "pontos_vida": 100,
+        "moedas_ouro": 250,
+        "inventario": [
+          "Espada de Madeira",
+          "Poção de Cura",
+          "Escudo de Bronze"
+        ],
+        "habilidades": {
+          "forca": 18,
+          "inteligencia": 20,
+          "ciberseguranca": 99
+        }
+      }, null, 2);
+    } else if (tipo === 'bat') {
+      nomeArquivo = 'teste_seguro.bat';
+      conteudo = "@echo off\r\ncls\r\necho ===========================================\r\necho      PROJETO LIRACODE - TESTE SEGURO\r\necho ===========================================\r\necho Voce acabou de executar um script em lote (.bat)!\r\necho Repare como um arquivo executavel executa ordens sozinho.\r\necho Por isso, so devemos abrir programas de fontes confiaveis!\r\necho ===========================================\r\npause";
+    } else if (tipo === 'png') {
+      const canvas = document.createElement('canvas');
+      canvas.width = 200;
+      canvas.height = 200;
+      const ctx = canvas.getContext('2d');
+      
+      ctx.fillStyle = '#1e3a8a';
+      ctx.fillRect(0, 0, 200, 200);
+      ctx.fillStyle = '#b91c1c';
+      ctx.beginPath();
+      ctx.arc(100, 100, 70, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#eab308';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('LIRA', 100, 112);
+
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'escudo_liracode.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        abrirModal("Download Concluído", "O arquivo 'escudo_liracode.png' foi baixado com sucesso!");
+      });
+      return;
+    }
+
+    const blob = new Blob([conteudo], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nomeArquivo;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    abrirModal("Download Concluído", `O modelo de treino '${nomeArquivo}' foi baixado na sua pasta de Downloads!`);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('hideExtToggle')) {
+      atualizarSimulador();
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>
