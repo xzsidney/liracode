@@ -132,6 +132,14 @@
               <button onclick="baixarModelo('png')" class="px-4 py-2.5 bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-bold rounded-xl border border-sky-500/50 flex items-center gap-2 transition active:scale-95 shadow">
                 <i class="fa-solid fa-image"></i> Escudo PNG
               </button>
+              <a href="/downloads/simulador-perigo.exe" download="simulador-perigo.exe" onclick="notificarDownloadExe(event)" class="px-4 py-2.5 bg-gradient-to-r from-red-700/80 to-red-900/90 hover:from-red-600 hover:to-red-800 text-white text-xs font-bold rounded-xl border-2 border-red-500 flex items-center gap-2 transition active:scale-95 shadow-lg shadow-red-900/40 hover:scale-105" title="Arquivo executável oficial do laboratório de cibersegurança">
+                <i class="fa-solid fa-triangle-exclamation text-amber-300 animate-pulse text-sm"></i>
+                <span>Simulador de Perigo (.exe)</span>
+              </a>
+              <a href="/downloads/simulador-perigo.zip" download="simulador-perigo.zip" class="px-3.5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl border border-slate-600 flex items-center gap-1.5 transition active:scale-95 shadow" title="Versão compactada em ZIP caso o navegador alerte sobre o executável">
+                <i class="fa-solid fa-file-zipper text-brand-gold"></i>
+                <span>Versão ZIP</span>
+              </a>
             </div>
           </div>
 
@@ -446,6 +454,16 @@
     URL.revokeObjectURL(url);
 
     abrirModal("Download Concluído", `O modelo de treino '${nomeArquivo}' foi baixado na sua pasta de Downloads!`);
+  }
+
+  function notificarDownloadExe(e) {
+    setTimeout(() => {
+      abrirModal(
+        "Download do Simulador (.EXE) Iniciado!",
+        "O arquivo de treino 'simulador-perigo.exe' foi enviado para a sua pasta de downloads. Nota pedagógica de Cibersegurança: se o navegador ou Windows SmartScreen exibir um aviso dizendo que o arquivo é incomum, mostre aos alunos como o sistema reage a executáveis e clique em 'Manter / Executar assim mesmo'!",
+        "alerta"
+      );
+    }, 400);
   }
 
   window.addEventListener('DOMContentLoaded', () => {
