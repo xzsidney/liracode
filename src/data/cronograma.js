@@ -4,7 +4,7 @@
  */
 
 // Configure aqui a semana atual do curso (1 a 12)
-const SEMANA_ATUAL = 2;
+const SEMANA_ATUAL = 3;
 
 const dadosCurso = {
   nome: "LiraCode",
@@ -440,6 +440,61 @@ function obterSemanaAtual(semanaNumero) {
   return modulos[0].semanas[0];
 }
 
+// Coleção de Histórico Oficial das Aulas para o Portal dos Pais
+const historicoAulas = [
+  {
+    numero: 1,
+    titulo: "Do Caderno às Gavetas Digitais",
+    status: "concluida",
+    badgeTexto: "Concluída",
+    dataDestaque: "Semana 01 • Fundamentos",
+    icone: "fa-solid fa-folder-tree",
+    corBadge: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+    linkLaboratorio: "https://aula.liracode.com.br/aula01.html",
+    oQueFizemos: "Começamos no papel: cada aluno escreveu no caderno suas características (Nome, Idade, Hobbies) para entenderem como dados são organizados. Depois fomos para o Windows Explorer: criamos pastas organizadas, criamos o primeiro arquivo .txt no Bloco de Notas e praticamos o ciclo CRUD manual (criar, ler, editar, copiar e deletar arquivos com segurança).",
+    porQueImporta: "Antes de programar, a criança precisa dominar o sistema operacional e entender como a memória e os discos organizam informações. Sem isso, ela fica perdida quando for salvar códigos e projetos.",
+    desafioCasa: "Organizar uma pasta no computador de casa criando um arquivo de anotações com o Bloco de Notas.",
+    perguntasAlmoco: [
+      "Você sabia que pastas são como gavetas digitais?",
+      "Como você fez para deletar e recuperar um arquivo no computador?"
+    ]
+  },
+  {
+    numero: 2,
+    titulo: "O Crachá dos Arquivos & Cibersegurança",
+    status: "concluida",
+    badgeTexto: "Concluída",
+    dataDestaque: "Semana 02 • Cibersegurança Ativa",
+    icone: "fa-solid fa-shield-halved",
+    corBadge: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+    linkLaboratorio: "https://aula.liracode.com.br/aula02.html",
+    oQueFizemos: "Investigamos a anatomia dos arquivos e descobrimos que o Windows muitas vezes esconde o 'crachá' (extensão) deles. Vimos arquivos .txt, imagens .png, o formato .json (a linguagem universal de dados dos programadores) e os perigosos arquivos executáveis .exe e .bat. As crianças aprenderam na prática a desmascarar golpes da internet.",
+    porQueImporta: "Cibersegurança real começa sabendo onde você clica. Um golpista pode mandar uma 'foto.png.exe' fingindo ser inofensiva. Nossos alunos agora sabem desmascarar essa pegadinha antes de dar o duplo clique!",
+    desafioCasa: "Verificar no computador da família se as extensões de arquivos estão visíveis e explicar para os pais por que isso é mais seguro.",
+    perguntasAlmoco: [
+      "Por que nunca devemos clicar em arquivos duplos como foto.png.exe?",
+      "O que é um arquivo JSON e por que os programadores gostam tanto dele?"
+    ]
+  },
+  {
+    numero: 3,
+    titulo: "A Ficha Vira Web: O Primeiro HTML Puro",
+    status: "em-andamento",
+    badgeTexto: "Aula da Semana",
+    dataDestaque: "Semana 03 • Em Andamento",
+    icone: "fa-solid fa-code",
+    corBadge: "bg-amber-500/20 text-amber-300 border-amber-500/40 animate-pulse",
+    linkLaboratorio: "https://aula.liracode.com.br/aula03.html",
+    oQueFizemos: "A grande transição! Pegamos a ficha de texto criada no Bloco de Notas e vamos ensiná-la a falar a linguagem da internet. Criamos o primeiro arquivo .html puro, entendemos o esqueleto básico (cabeça e corpo da página) e publicamos na Hostinger para o mundo ver.",
+    porQueImporta: "A sensação de ver algo que você escreveu no Bloco de Notas virar um site de verdade na internet é o momento que acende a paixão pela tecnologia. Eles deixam de ser consumidores de sites e passam a ser os construtores da web.",
+    desafioCasa: "Abrir sua primeira página web no navegador e mostrar para os pais e amigos.",
+    perguntasAlmoco: [
+      "Como o navegador sabe o que é título e o que é texto dentro de uma página?",
+      "Qual foi a sensação de ver o seu próprio site funcionando na internet?"
+    ]
+  }
+];
+
 module.exports = {
   SEMANA_ATUAL,
   dadosCurso,
@@ -449,6 +504,7 @@ module.exports = {
   perguntasAlmoco,
   modulos,
   dicasFamilia,
+  historicoAulas,
   obterSemanasComStatus,
   obterSemanaAtual
 };

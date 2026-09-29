@@ -9,6 +9,7 @@ const {
   perguntasAlmoco,
   modulos,
   dicasFamilia,
+  historicoAulas,
   obterSemanasComStatus,
   obterSemanaAtual
 } = require('./data/cronograma');
@@ -71,7 +72,7 @@ app.get('/trilha', (req, res) => {
   });
 });
 
-// 3. ROTA DA ÁREA DOS PAIS & FAMÍLIA: Acompanhamento Semanal & Perguntas de Almoço
+// 3. ROTA DA ÁREA DOS PAIS & FAMÍLIA: Acompanhamento Semanal, Diário de Bordo & Perguntas de Almoço
 app.get('/pais', (req, res) => {
   const semanaEmDestaque = obterSemanaAtual(SEMANA_ATUAL);
   const progresso = calcularProgresso(SEMANA_ATUAL);
@@ -83,9 +84,24 @@ app.get('/pais', (req, res) => {
     semanaNumeroAtual: SEMANA_ATUAL,
     estudantes: estudantesOficiais,
     familias: familiasConectadas,
+    historicoAulas,
     dicasFamilia,
     perguntasAlmoco,
     progresso
+  });
+});
+
+// 4. ROTA DO HISTÓRICO DE UMA AULA ESPECÍFICA PARA OS PAIS
+app.get('/pais/aula/:numero', (req, res) => {
+  const numero = parseInt(req.params.numero, 10);
+  const aula = historicoAulas.find(a => a.numero === numero);
+  if (!aula) return res.redirect('/pais');
+  res.render('pais-aula', {
+    paginaAtiva: 'pais',
+    aula,
+    semanaNumero: numero,
+    totalAulas: historicoAulas.length,
+    curso: dadosCurso
   });
 });
 
