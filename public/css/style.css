@@ -1,11 +1,12 @@
 /* ==========================================================================
-   🛡️ LIRACODE — DESIGN SYSTEM OFICIAL & ESTILOS GLOBAIS
-   Paleta Rigorosa Homologada:
-   🍷 Bordô Rubro:     #b91c1c (--brand-red)
+   🛡️ LIRACODE — DESIGN SYSTEM NOBRE & ESTILOS GLOBAIS
+   Paleta Heráldica Oficial Homologada:
+   🍷 Bordô Rubro:     #b91c1c / #991b1b (--brand-red)
    🍷 Vinho Nobre:      #881337 (--brand-darkred)
    🌌 Azul Real:        #1e3a8a (--brand-blue)
-   🌌 Azul Profundo:    #0f172a (--brand-darkblue / Fundo Geral)
-   👑 Dourado Imperial: #eab308 (--brand-gold)
+   🌌 Azul Noite Fundo: #0a0f1d (--brand-darkblue / Fundo Geral)
+   🌌 Slate Profundo:   #0f172a (--brand-midnight)
+   👑 Dourado Imperial: #eab308 / #ca8a04 (--brand-gold)
    👑 Dourado Claro:    #fde047 (--brand-goldlight)
    ⚡ Âmbar Acento:     #f59e0b (--brand-accent)
    ========================================================================== */
@@ -15,7 +16,8 @@
   --brand-red: #b91c1c;
   --brand-darkred: #881337;
   --brand-blue: #1e3a8a;
-  --brand-darkblue: #0f172a;
+  --brand-darkblue: #0a0f1d;
+  --brand-midnight: #0f172a;
   --brand-gold: #eab308;
   --brand-goldlight: #fde047;
   --brand-accent: #f59e0b;
@@ -25,16 +27,16 @@
   --status-danger: #ef4444;
   --status-info: #0ea5e9;
 
-  /* Fontes */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Chakra Petch', sans-serif;
+  /* Fontes Nobres Oficiais */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Cinzel', serif;
   --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
 
   /* Efeitos e Sombras */
-  --shadow-gold: 0 0 25px -5px rgba(234, 179, 8, 0.4);
-  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
-  --shadow-neon-red: 0 0 20px rgba(185, 28, 28, 0.35);
-  --shadow-neon-blue: 0 0 20px rgba(30, 58, 138, 0.4);
+  --shadow-gold: 0 0 35px -5px rgba(234, 179, 8, 0.45);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
+  --shadow-neon-red: 0 0 25px rgba(185, 28, 28, 0.4);
+  --shadow-neon-blue: 0 0 25px rgba(30, 58, 138, 0.45);
 }
 
 /* Custom Scrollbar com as cores do Manto */
@@ -42,7 +44,7 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #0a0f1d;
 }
 ::-webkit-scrollbar-thumb {
   background: #b91c1c;
@@ -50,26 +52,60 @@
   border: 2px solid #eab308;
 }
 
-/* Textura Oficial Jersey Pattern (Pontilhada Dourada) */
+/* Textura Oficial Jersey Pattern (Pontilhada Dourada Nobre) */
 .jersey-pattern {
-  background-color: #0f172a;
-  background-image: radial-gradient(rgba(234, 179, 8, 0.15) 1px, transparent 0);
+  background-color: #0a0f1d;
+  background-image: radial-gradient(rgba(234, 179, 8, 0.12) 1.2px, transparent 0);
   background-size: 24px 24px;
   background-attachment: fixed;
 }
 
-/* Glow e Efeitos Visuais Nobres */
+/* Tipografia Utilitária */
+.font-cinzel {
+  font-family: var(--font-display);
+}
+
+.font-jakarta {
+  font-family: var(--font-sans);
+}
+
+/* Gradientes de Texto Nobre */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fde047 0%, #eab308 50%, #ca8a04 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.silver-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Aura Dourada e Efeitos Visuais Nobres */
 .badge-glow {
-  box-shadow: var(--shadow-gold);
+  box-shadow: 0 0 35px rgba(234, 179, 8, 0.35);
+}
+
+.badge-glow-subtle {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.2);
+}
+
+.crest-glow {
+  filter: drop-shadow(0 0 25px rgba(234, 179, 8, 0.45));
+}
+
+.glow-hover {
+  transition: all 0.3s ease;
 }
 
 .glow-hover:hover {
-  box-shadow: 0 0 30px rgba(234, 179, 8, 0.3);
+  box-shadow: 0 0 30px rgba(234, 179, 8, 0.35);
   transform: translateY(-2px);
 }
 
 .pulse-gold {
-  animation: pulseGold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulseGold 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes pulseGold {
@@ -78,9 +114,78 @@
     transform: scale(1);
   }
   50% {
-    opacity: .8;
-    transform: scale(1.05);
+    opacity: 0.85;
+    transform: scale(1.03);
   }
+}
+
+/* Moldura Nobre de Cartões e Seções */
+.noble-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 29, 0.98) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.noble-card:hover {
+  border-color: rgba(234, 179, 8, 0.7);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(234, 179, 8, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Card Especial dos Pioneiros */
+.pioneer-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(30, 58, 138, 0.2) 0%, rgba(10, 15, 29, 0.98) 75%);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pioneer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #b91c1c, #eab308, #1e3a8a);
+  opacity: 0.8;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.pioneer-card:hover {
+  border-color: #eab308;
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(234, 179, 8, 0.25);
+}
+
+.pioneer-card:hover::before {
+  height: 5px;
+  opacity: 1;
+}
+
+/* Moldura e Efeito para Avatares 3D */
+.avatar-halo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(30, 58, 138, 0.3) 60%, transparent 100%);
+  padding: 8px;
+  transition: transform 0.4s ease;
+}
+
+.avatar-halo img {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pioneer-card:hover .avatar-halo img {
+  transform: scale(1.08);
 }
 
 /* Escudo LiraCode Efeito 3D */
@@ -128,44 +233,6 @@
 .portal-card:hover::before {
   opacity: 1;
   height: 6px;
-}
-
-/* Camisas dos Alunos (Manto Sagrado) */
-.student-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 0.5rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  transition: all 0.2s ease;
-}
-
-.student-badge-red {
-  background: #881337;
-  border: 1px solid #eab308;
-  color: #fde047;
-}
-
-.student-badge-red:hover {
-  background: #b91c1c;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.5);
-}
-
-.student-badge-blue {
-  background: #1e3a8a;
-  border: 1px solid #eab308;
-  color: #fde047;
-}
-
-.student-badge-blue:hover {
-  background: #2563eb;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.5);
 }
 
 /* Cards do Mural de Fotos & Momentos */

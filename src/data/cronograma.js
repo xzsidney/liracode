@@ -13,7 +13,7 @@ const dadosCurso = {
   faixaEtaria: "Jovens de 10 a 16 anos",
   formato: "Aulas práticas aos sábados (90 minutos)",
   duracaoTotal: "12 semanas de imersão prática",
-  statusTurma: "Turma Oficial Ativa • 6 Estudantes Conectados",
+  statusTurma: "Turma Oficial Ativa • 5 Estudantes Conectados",
   mentor: "Sidney (veterano da era do processador 486)",
   ferramentas: ["Windows Explorer Avançado", "Node.js", "Visual Studio Code", "Git & GitHub", "Terminal"],
   contatoSuporte: {
@@ -23,22 +23,60 @@ const dadosCurso = {
   }
 };
 
-// Turma Oficial de 6 Estudantes
+// Turma Oficial de 5 Estudantes com Avatares 3D Protegidos
 const estudantesOficiais = [
-  { nome: "Ana Luiza", responsavel: "Isabela", parentesco: "Mãe", badge: "Turma LiraCode" },
-  { nome: "Isabely", responsavel: "Alessandra", parentesco: "Mãe", badge: "Turma LiraCode" },
-  { nome: "Enzo", responsavel: "Alessandra", parentesco: "Mãe", badge: "Turma LiraCode" },
-  { nome: "Samuel", responsavel: "Yara", parentesco: "Mãe", badge: "Turma LiraCode" },
-  { nome: "Paulo", responsavel: "Elaine e Sidney", parentesco: "Pais", badge: "Turma LiraCode" },
-  { nome: "Jennifer", responsavel: "Elaine e Sidney", parentesco: "Pais", badge: "Turma LiraCode" }
+  { 
+    nome: "Enzo", 
+    responsavel: "Alessandra", 
+    parentesco: "Mãe", 
+    badge: "Guardião da Cibersegurança",
+    statusHonra: "Nível 02 • Especialista em Arquivos",
+    avatarRosto: "/images/avatares/enzo-avatar.png",
+    avatarCorpo: "/images/avatares/enzo-corpo.png"
+  },
+  { 
+    nome: "Paulo Henrique", 
+    responsavel: "Elaine e Sidney", 
+    parentesco: "Pais", 
+    badge: "Estrategista de Código",
+    statusHonra: "Nível 02 • Analista de Sistemas",
+    avatarRosto: "/images/avatares/paulo-avatar.png",
+    avatarCorpo: "/images/avatares/paulo-corpo.png"
+  },
+  { 
+    nome: "Jennifer", 
+    responsavel: "Elaine e Sidney", 
+    parentesco: "Pais", 
+    badge: "Arquiteta Criativa",
+    statusHonra: "Nível 02 • Mestre de Estrutura",
+    avatarRosto: "/images/avatares/jennifer-avatar.png",
+    avatarCorpo: "/images/avatares/jennifer-corpo.png"
+  },
+  { 
+    nome: "Ana Luiza", 
+    responsavel: "Isabela", 
+    parentesco: "Mãe", 
+    badge: "Exploradora Digital",
+    statusHonra: "Nível 02 • Detetive de Malwares",
+    avatarRosto: "/images/avatares/analuiza-avatar.png",
+    avatarCorpo: "/images/avatares/analuiza-corpo.png"
+  },
+  { 
+    nome: "Isabely", 
+    responsavel: "Alessandra", 
+    parentesco: "Mãe", 
+    badge: "Sentinela de Dados",
+    statusHonra: "Nível 02 • Inspetora de Segurança",
+    avatarRosto: "/images/avatares/isabely-avatar.png",
+    avatarCorpo: "/images/avatares/isabely-corpo.png"
+  }
 ];
 
-// Rede de Famílias Conectadas
+// Rede de Famílias Conectadas (3 Famílias Oficiais)
 const familiasConectadas = [
   { responsavel: "Isabela", aluno: "Ana Luiza", parentesco: "Mãe da Ana Luiza", icone: "fa-solid fa-heart" },
   { responsavel: "Alessandra", aluno: "Isabely e Enzo", parentesco: "Mãe da Isabely e do Enzo", icone: "fa-solid fa-heart" },
-  { responsavel: "Yara", aluno: "Samuel", parentesco: "Mãe do Samuel", icone: "fa-solid fa-heart" },
-  { responsavel: "Elaine & Sidney", aluno: "Jennifer e Paulo", parentesco: "Pais da Jennifer e do Paulo", icone: "fa-solid fa-heart" }
+  { responsavel: "Elaine & Sidney", aluno: "Jennifer e Paulo Henrique", parentesco: "Pais da Jennifer e do Paulo Henrique", icone: "fa-solid fa-heart" }
 ];
 
 const galeriaMomentos = [
@@ -57,7 +95,7 @@ const galeriaMomentos = [
     id: 2,
     titulo: "A Gaveta Digital dos Arquivos",
     subtitulo: "Semana 01 • Organização & CRUD",
-    descricao: "Criação de pastas estruturadas no Windows e o primeiro arquivo .txt com a Ficha Pessoal de cada um dos 6 alunos.",
+    descricao: "Criação de pastas estruturadas no Windows e o primeiro arquivo .txt com a Ficha Pessoal de cada um dos 5 estudantes pioneiros.",
     categoria: "Fundamentos",
     icone: "fa-solid fa-folder-tree",
     gradiente: "from-brand-blue to-blue-950",
@@ -79,12 +117,12 @@ const galeriaMomentos = [
     id: 4,
     titulo: "A Turma Reunida no Laboratório",
     subtitulo: "Encontro aos Sábados",
-    descricao: "Ana Luiza, Isabely, Enzo, Samuel, Paulo e Jennifer aprendendo juntos a controlar o computador com raciocínio e segurança.",
+    descricao: "Enzo, Paulo Henrique, Jennifer, Ana Luiza e Isabely aprendendo juntos a controlar o computador com raciocínio e segurança.",
     categoria: "Companheirismo",
     icone: "fa-solid fa-users",
     gradiente: "from-brand-darkred to-slate-900",
     corBorda: "border-brand-gold/40",
-    detalhe: "6 Estudantes Oficiais"
+    detalhe: "5 Estudantes Oficiais"
   }
 ];
 
