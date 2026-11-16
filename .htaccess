@@ -1,0 +1,14 @@
+# LiraCode • Regras LiteSpeed / Apache (Hostinger)
+RewriteEngine On
+
+# 1. Se a requisição for para um arquivo existente na pasta public/ (CSS, imagens, etc.), serve direto
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+# 2. Se o arquivo ou diretório requisitado existir na raiz, serve direto
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. Caso contrário, envia para o Front Controller
+RewriteRule ^(.*)$ index.php [QSA,L]

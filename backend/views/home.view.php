@@ -1,12 +1,12 @@
-<%- include('partials/header', { 
-  titulo: 'LiraCode • Aprenda a controlar o computador, não apenas usá-lo',
-  paginaAtiva: 'inicio'
-}) %>
+<?php
+// Inclui o Cabeçalho Nobre
+include __DIR__ . '/partials/header.php';
+?>
 
 <main class="flex-grow">
   
   <!-- =========================================================================
-       SEÇÃO 1: HERO NOBRE E ACOLHEDOR (O PROPÓSITO REGIO & FAMILIAR)
+       SEÇÃO 1: HERO NOBRE E ACOLHEDOR (O PROPÓSITO RÉGIO & FAMILIAR)
        ========================================================================= -->
   <section class="relative overflow-hidden py-14 lg:py-24 bg-gradient-to-b from-slate-950 via-brand-darkblue to-slate-950 border-b-2 border-brand-gold/30">
     <!-- Aura de fundo heráldica -->
@@ -118,12 +118,12 @@
 
       <!-- Grid Responsivo dos 5 Estudantes -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        <% estudantes.forEach(function(estudante, index) { %>
+        <?php foreach ($estudantes as $index => $estudante): ?>
           <div class="pioneer-card p-6 flex flex-col justify-between group text-center space-y-4">
             
             <!-- Topo do Card: Número & Badge da Turma -->
             <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pb-2 border-b border-slate-800/80">
-              <span class="text-brand-gold font-bold font-display">#0<%= index + 1 %></span>
+              <span class="text-brand-gold font-bold font-display">#0<?= $index + 1 ?></span>
               <span class="inline-flex items-center gap-1 text-emerald-400">
                 <i class="fa-solid fa-shield text-[10px]"></i> Protegido
               </span>
@@ -133,8 +133,8 @@
             <div class="relative py-2 flex items-center justify-center">
               <div class="avatar-halo w-36 h-36 sm:w-32 sm:h-32 lg:w-36 lg:h-36">
                 <img 
-                  src="<%= estudante.avatarRosto %>" 
-                  alt="Avatar 3D de <%= estudante.nome %>" 
+                  src="<?= htmlspecialchars($estudante['avatarRosto']) ?>" 
+                  alt="Avatar 3D de <?= htmlspecialchars($estudante['nome']) ?>" 
                   class="w-full h-full object-contain rounded-full drop-shadow-xl"
                   loading="lazy"
                 >
@@ -144,17 +144,17 @@
             <!-- Identificação Régia do Estudante -->
             <div class="space-y-2">
               <h3 class="font-display font-black text-xl text-white group-hover:text-amber-300 transition-colors">
-                <%= estudante.nome %>
+                <?= htmlspecialchars($estudante['nome']) ?>
               </h3>
 
               <!-- Insígnia de Honra -->
               <div class="inline-block px-3 py-1 rounded-lg bg-brand-blue/30 border border-brand-gold/40 text-[11px] font-bold text-amber-300 font-sans shadow-sm">
-                <i class="fa-solid fa-award text-brand-gold mr-1"></i> <%= estudante.badge %>
+                <i class="fa-solid fa-award text-brand-gold mr-1"></i> <?= htmlspecialchars($estudante['badge']) ?>
               </div>
 
               <!-- Status de Nível -->
               <p class="text-xs text-slate-300 font-sans">
-                <%= estudante.statusHonra %>
+                <?= htmlspecialchars($estudante['statusHonra']) ?>
               </p>
             </div>
 
@@ -167,7 +167,7 @@
             </div>
 
           </div>
-        <% }); %>
+        <?php endforeach; ?>
       </div>
 
       <!-- Nota de Cibersegurança & Pais -->
@@ -248,7 +248,7 @@
             </div>
 
             <p class="text-sm text-slate-300 leading-relaxed font-sans">
-              Sair do papel de mero consumidor passivo de aplicativos de celular para se tornar um criador. Dominando o terminal de comando, a lógica de programação com Node.js e a construção de páginas web autorais.
+              Sair do papel de mero consumidor passivo de aplicativos de celular para se tornar um criador. Dominando o terminal de comando, a lógica de programação e a construção de páginas web autorais.
             </p>
           </div>
 
@@ -309,22 +309,22 @@
                 <span>Radar da Semana • Aula Prática Ativa</span>
               </div>
               <h2 class="text-2xl sm:text-3xl font-black font-display text-white">
-                Aula 02: O Crachá dos Arquivos & Extensões Ocultas no Windows
+                Aula <?= htmlspecialchars($semanaAtual['numero']) ?>: <?= htmlspecialchars($semanaAtual['titulo']) ?>
               </h2>
             </div>
             
             <span class="px-4 py-1.5 rounded-xl bg-slate-900 border border-brand-gold/50 text-brand-gold font-mono text-xs font-bold self-start sm:self-auto">
-              Semana 02 de 12
+              Semana <?= sprintf('%02d', $semanaAtual['numero']) ?> de <?= $progresso['totalSemanas'] ?>
             </span>
           </div>
 
           <!-- Resumo Pedagógico Acessível -->
           <div class="space-y-3 font-sans">
             <h4 class="text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
-              <i class="fa-solid fa-circle-info text-brand-gold"></i> O que os 5 estudantes viveram na prática:
+              <i class="fa-solid fa-circle-info text-brand-gold"></i> O que os 5 estudantes estão vivenciando na prática:
             </h4>
             <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-              No último sábado, os alunos descobriram que o Windows costuma esconder o final dos nomes dos arquivos por padrão. Eles aprenderam a ativar a exibição de extensões ocultas e realizaram a análise prática de arquivos de texto (<code class="text-brand-gold">.txt</code>), dados estruturados (<code class="text-brand-gold">.json</code>), imagens (<code class="text-brand-gold">.png</code>) e o perigo real dos executáveis (<code class="text-brand-red">.exe / .bat</code>).
+              <?= htmlspecialchars($semanaAtual['resumo']) ?>
             </p>
           </div>
 
@@ -336,31 +336,24 @@
             </div>
             
             <p class="text-white text-base sm:text-lg font-semibold italic font-sans leading-relaxed">
-              "Pergunte ao seu filho como ele descobre se um arquivo <span class="text-sky-300">.png</span> é na verdade um vírus <span class="text-red-400">.exe</span> disfarçado!"
-            </p>
-            
-            <p class="text-xs sm:text-sm text-slate-300 font-sans">
-              Ao pedir para a criança explicar a pegadinha da extensão dupla (ex: <code class="text-brand-gold">foto_do_jogo.png.exe</code>), você estimula o raciocínio dela e reforça a autoproteção no computador de casa.
+              "<?= htmlspecialchars($semanaAtual['dicaParaPais']) ?>"
             </p>
           </div>
 
           <!-- Botões de Ação para os Pais -->
           <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800 font-sans">
             <a 
-              href="/pais" 
+              href="https://aula.liracode.com.br/" 
+              target="_blank"
               class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold bg-gradient-to-r from-brand-gold to-amber-500 text-slate-950 hover:brightness-110 transition shadow-lg flex items-center justify-center gap-2 text-sm"
             >
-              <i class="fa-solid fa-user-shield"></i>
-              <span>Ver Todas as Dicas na Área dos Pais</span>
+              <i class="fa-solid fa-laptop-code"></i>
+              <span>Ver Trabalhos em aula.liracode.com.br</span>
             </a>
 
-            <a 
-              href="/trilha" 
-              class="text-xs sm:text-sm font-semibold text-slate-400 hover:text-brand-gold transition flex items-center gap-1.5"
-            >
-              <span>Ver Trilha Completa de 12 Semanas</span>
-              <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+            <span class="text-xs text-slate-400 font-mono">
+              Status: <?= htmlspecialchars($progresso['statusTexto']) ?>
+            </span>
           </div>
 
         </div>
@@ -371,4 +364,7 @@
 
 </main>
 
-<%- include('partials/footer') %>
+<?php
+// Inclui o Rodapé Nobre
+include __DIR__ . '/partials/footer.php';
+?>
